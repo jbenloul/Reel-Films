@@ -23,16 +23,16 @@
                 });
             } // End if
         });
-    })
 
-        /* Javascript | Jquery */
+
+            /* Javascript | Jquery */
 
     // Need to give all genre's attribute of = "genre-name"
-/// The plan is to store the initial *unfiltered* movie list from The Movie DB in the initialPlaylist array 
-var initialPlaylist = [];
-/// Then we need to filter initialPlaylist into filteredPlaylistArrayt
-var filteredPlaylist = [];
-var userProfile = [];
+    /// The plan is to store the initial *unfiltered* movie list from The Movie DB in the initialPlaylist array 
+    var initialPlaylist = [];
+    /// Then we need to filter initialPlaylist into filteredPlaylistArrayt
+    var filteredPlaylist = [];
+    var userProfile = [];
 
     // FRONT END TO DO - In order for this onclick to work each dropdown item needs to have the class "genre" and a value="genreName"
     $('.genre').on('click', function(){
@@ -42,9 +42,8 @@ var userProfile = [];
             questionStartFromSecond()
             // SEND USER TO RENDER-DIV AREA AND RENDER QUESTIONS STARTING FROM 2nd QUESTION
         }
-
-        $('#hide-display').css('display',block)
-
+        /*$('#hide-display').css('display',block);*/
+        console.log("genre class item clicked!");
         // NEED TO SEND USER TO 2nd PAGE TO FINISH QUESTIONS
         // NEED TO RENDER QUESTION DIV INSIDE RENDER DIV
 
@@ -62,26 +61,28 @@ var userProfile = [];
         // NEED TO GET TO GATHER WITH TEAM TO DISCUSS HOW WE WANT TO CHOOSE THE YEAR RANGE - INPUT BOXES ? RADIO BUTTONS ? SOME TYPE OF ADDON THAT ALLOWS US TO CHOOSE IN A RANGE ALL FANCY
         
         var questionTwoButtonDiv = $('<div>').addClass('question-two-button-div'); 
-        var questionTwoText =$('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?").css('display',block);
-        var questionTwoButtonIndie = $('<button>').addClass('question-two-button').attr("value",indie);
-        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button').attr("value",mainstream);
+        var questionTwoText =$('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?")/*.css('display',block)*/;
+        var questionTwoButtonIndie = $('<button>').addClass('question-two-button').text("Indie Movie").attr("value", 200000);
+        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button').text("Mainstream Movie").attr("value", 200000);
 
         questionTwoButtonDiv.append(questionTwoButtonIndie);
         questionTwoButtonDiv.append(questionTwoButtonMainstream);
-        questionTwoDiv.prepend(questionTwoHTML);
+        questionTwoDiv.prepend(questionTwoText);
         questionTwoDiv.append(questionTwoButtonDiv);
+
+        $('#render-div').append(questionTwoDiv);
 
         // Once the user clicks the rendered buttons (indie / mainstream) the value of the button will be pushed to the array (userPlaylist) as the 2nd element in the array
         // The div will fade out and once its faded out completely the div will be emptyed and will be ready for the next question to be populated inside. 
-        $(document).on("click", ".question-two-button" function(){
+        $(document).on("click", ".question-two-button" , function(){
 
             userProfile.push($(this).val());
 
-            $('render-div').hide(1500);
+            $('#render-div').hide(1500);
 
             setTimeout(function(){ 
 
-                $('render-div').empty();
+                $('#render-div').empty();
 
             }, 1500);
             
@@ -91,16 +92,16 @@ var userProfile = [];
 
     function questionThree(){
 
-            $('render-div').show(1000);
+            $('#render-div').show(1000);
             // QUESTION 3 IS FILTER BY YEAR RANGE
             // Create Content
             var questionThreeDiv = $('<div>').addClass('question-three-div');
             var questionThreeButtonDiv = $('<div>').addClass('question-three-button-div');
-            var questionThreeText =$('<p>').addClass('question-three-html').text("Pick A Year Range").css('display',block);
-            var buttonRangeOne = $('<button>').addClass('question-three-button').text('1900-1950').attr("value", rangeOne);
-            var buttonRangeTwo = $('<button>').addClass('question-three-button').text('1951-1970').attr("value", rangeTwo);
-            var buttonRangeThree = $('<button>').addClass('question-three-button').text('1971-1990').attr("value", rangeThree);
-            var buttonRangeFour = $('<button>').addClass('question-three-button').text('1991-Current').attr("value", rangeFour);
+            var questionThreeText =$('<p>').addClass('question-three-html').text("Pick A Year Range")/*.css('display',block)*/;
+            var buttonRangeOne = $('<button>').addClass('question-three-button').text('1900-1950').attr("value", "rangeOne");
+            var buttonRangeTwo = $('<button>').addClass('question-three-button').text('1951-1970').attr("value", "rangeTwo");
+            var buttonRangeThree = $('<button>').addClass('question-three-button').text('1971-1990').attr("value", "rangeThree");
+            var buttonRangeFour = $('<button>').addClass('question-three-button').text('1991-Current').attr("value", "rangeFour");
 
             // Combine content and render to page
             questionThreeButtonDiv.prepend(buttonRangeOne);
@@ -111,15 +112,17 @@ var userProfile = [];
             questionThreeDiv.prepend(questionThreeText);
             questionThreeDiv.append(questionThreeButtonDiv);
 
-            $(document).on("click", ".question-three-button" function(){
+            $('#render-div').append(questionThreeDiv);
+
+            $(document).on("click", ".question-three-button", function(){
 
             userProfile.push($(this).val());
 
-            $('render-div').hide(1500);
+            $('#render-div').hide(1500);
 
             setTimeout(function(){ 
 
-                $('render-div').empty();
+                $('#render-div').empty();
 
             }, 1500);
 
@@ -128,7 +131,7 @@ var userProfile = [];
     }
 
     function questionFour(){
-        $('render-div').show(1000);
+        $('#render-div').show(1000);
 
 
         // QUESTION 3 IS FILTER BY YEAR RANGE
@@ -150,7 +153,7 @@ var userProfile = [];
 
         questionFourDiv.append(questionFourButtonDiv);
 
-        $(document).on("click", ".question-three-button" function(){
+        $(document).on("click", ".question-three-button", function(){
 
             userProfile.push($(this).val());
 
@@ -203,4 +206,7 @@ var userProfile = [];
       }
 
     // This line will look for any playlists added and will change the playlist when clicked
-    $(document).on("click", ".individualPlaylist", changePlaylist)  
+    /*$(document).on("click", ".individualPlaylist", changePlaylist)*/
+
+
+    });
