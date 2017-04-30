@@ -88,7 +88,7 @@ $(document).ready(function() {
         /*$('#hide-display').css('display',block);*/
         
     });
-
+  
     function questionStartFromSecond(){
     
         $('#render-div').hide();
@@ -286,6 +286,13 @@ $(document).ready(function() {
 
     function videoRender(){
 
+
+        $('render-div').hide();
+        $('render-div').empty();
+
+        var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
+        $('#playlist-div').prepend(createDiv);
+
         $('#render-div').show(1000);
         var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
         $('#playlist-div').prepend(createDiv);
@@ -301,10 +308,6 @@ $(document).ready(function() {
         $('#render-div').append(moviePlayerContainer);
 
         onYouTubeIframeAPIReady();
-
-
-    }
-
 
     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
     function createNewPlaylist(){

@@ -9,18 +9,12 @@ body {
 }*/
 
 
-.placeholderSidebar{
-    height: 400px;
-       color: black;
-       border: 2px solid black;
-       border-radius: 15px
-   }
     /* navbar */
     
     .navbar {
         font-family: Montserrat, sans-serif;
         margin-bottom: 0 !important;
-        background-color: #f4511e !important;
+        background-color: #FF8640 !important;
         z-index: 9999 !important;
         border: 0 !important;
         font-size: 12px !important;
@@ -49,16 +43,21 @@ body {
     
     .jumbotron {
         font-family: Montserrat, sans-serif;
-        background-color: #f4511e !important;
+        background-color: #2988BC !important;
         color: #ffffff !important;
         padding: 100px 25px !important;
+        /*margin-bottom: 150px !important;*/
     }
+
+    .btn-danger {
+   background-color: #FF8640 !important;
+   border-color: #ED8C72 !important;
+}
     
     .bg-grey {
         background: #f6f6f6;
     }
     
-
     .logo {
         font-size: 200px;
     }
@@ -94,11 +93,13 @@ body {
         font-style: normal;
     }
     
-    footer .glyphicon {
-        font-size: 20px;
-        margin-bottom: 20px;
-        color: #f4511e;
-    }
+footer .glyphicon {
+   font-size: 20px;
+   margin-bottom: 15px;
+   margin-top: 15px;
+   color: #2988BC ;
+}
+
 footer {
    clear: both;
    position: relative;
@@ -106,7 +107,91 @@ footer {
    height: 3em;
    margin-top: -3em;
 }
+footer p {
+   background-color: #FF8640 !important;
+   color: #ffffff !important;
+}
 
-    footer p {
-        color: #bbb;
+
+
+.placeholderSidebarLeft{
+    background-color: #2988BC;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    /* Font styles */
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
     }
+
+    .placeholderSidebarRight{
+    background-color: #2988BC;
+    height: 400px;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+    display: inline-block;
+    padding: 10px;
+    margin: 10px;
+    /* Font styles */
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    }
+
+
+    .questions-here{
+        background-color: #2988BC;
+        height: 300px;
+        width: 600px;
+        border: 1px solid black;
+        margin: auto;
+        box-shadow: 0 0 5px 2px rgba(0,0,0,.35);
+        border-radius: 5px;
+        color: white;
+
+    }
+
+.question-buttons{
+    width:50% !important;
+    margin: auto;
+    }
+
+    .question-buttons:hover{
+        color: black;
+}
+
+    .question-html{
+
+    }
+
+    .question-buttons-div{
+
+    }
+
+
+    .sidebar-headers{
+        font-size: 20px;
+        font-weight: bold;
+        color: #2988BC;
+
+    }
+
+
+.purchase-container{
+    border: 1px solid black;
+    height: 110px;
+    width: 500px;
+    margin: auto;
+}
+
+.icons{
+    height: 75px;
+    width: 75px;
+    margin: auto;
+}
