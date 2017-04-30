@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,6 +9,7 @@
     <!-- bootstrap properties -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- google fonts "Montserrat" and "Lato" -->
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
@@ -15,6 +17,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/main.js"></script>
     <script src="assets/javascript/jquery-3.2.1.js"></script>
+    <link rel="icon" href="https://lh4.ggpht.com/jHuHOCs1hHv851VdpI-w1l5sIS2PlT9x48FRF-JNgSfIZwdZHqXJvq7_ra9dMHPqIy8d=w300">
 </head>
 <!-- Add scrollspy to <body> to automatically update navbar links when scrolling -->
 
@@ -116,29 +119,33 @@
             </div>
         </div>
     </div>
-
-
     <!-- SECTION  -->
-    <div class="container-fluid text-center" id="hide-display" >
+    <div class="container-fluid text-center" id="hide-display">
         <div class="row" id="jump-to-here">
             <div class="col-sm-2 sidebar-offcanvas" id="sidebar playlist playlist-item playlistItem">
                 <div class="list-group">
+                    <!-- their name becomes name of playlist -->
+                    <!-- ALL PLACEHOLDER ITEMS UNTIL THEY ARE APPENDED -->
 
-                    <!-- Playlist Div -->
-                    <div class="placeholderSidebar" id="playlist-div"></div>
-                    <!-- Playlist Div -->
-               </div>
-
+                    <div class="placeholderSidebarLeft placeholderSidebar" id="playlist-div">
+                        
+            
+                    </div>
+                </div>
             </div>
-            <!--   render-div   -->
             <div class="col-sm-8 container" id="render-div">
-
-                <!-- Movie Data (Above movie player) -->
+                <div class="questions-here">
+                    <h3 class="question-html">What kind of movie do you want to watch? 
+                </h3>
+                    <div class="question-buttons-div">
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                    </div>
+                </div>
                 <div id="main-movie-data-container">
                     <h2 class="movieNameDisplay"> Movie Title Here </h2>
                 </div>
-                <!-- Movie Data (Above movie player) -->
-
                 <!-- entire carousel -->
                 <div class="carousel slide" id="myCarousel" data-ride="Carousel">
                     <!-- items inside the carousel. Not the buttons -->
@@ -169,42 +176,38 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div id="purchase-container">
-                    <br><span style="font-style:normal;"></span>
-                    <p class="buyingOptionDisplay"> buy1 buy2 buy3</p>
+                <div class="purchase-container">
+                    <span class="purchase-option-amazon">
+                    <a target="_blank" href="https://www.amazon.com/"><img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Amazon-icon.png" class="icons" alt ="Purchase From Amazon">$99.99</a>
+                    </span>
+                    <span class="purchase-option-youtube">
+                    <a target="_blank" href="https://www.youtube.com/"><img src="http://icons.veryicon.com/ico/Application/iOS7%20Style%20Metro%20UI/MetroUI%20YouTube.ico" class="icons" alt ="Purchase From Youtube">$99.99</a>
+                    </span>
+                      <span class="purchase-option-itunes">
+                    <a target="_blank" href="https://www.itunes.com/"><img src="https://redalemeden.com/images/itunes/10-0-0.png" class="icons" alt ="Purchase From Itunes">$99.99</a>
+                    </span>
                 </div>
-            </div> <!--   render-div END   -->
-
+            </div>
             <div class="col-sm-2" id="sidebar playlist playlist-item playlistItem">
                 <div class="list-group">
-                   <!-- their name becomes name of playlist -->
-                   
-
-                   <!-- Movie Data Right Side Bar (Right of screen) -->
-                   <div class="placeholderSidebar" id="side-movie-data-container">
-
-                   </div>
-                   <!-- Movie Data Right Side Bar (Right of screen) -->
-               </div>
-
-            </div>
-        </div>
-           
-
-
-
-    </div>
-    <!-- Set height and width with css -->
-<footer class="text-center">
-    <div class="container-fluid bg-grey text-center" style="padding: 0px !important;">
-            <div class="row">
-                <div class="col-sm-12">
-                    <p><span class="glyphicon glyphicon-map-marker"></span> Los Angeles, US</p>
-                    <p><span class="glyphicon glyphicon-envelope"></span> our email address</p>
+                    <!-- their name becomes name of playlist -->
+                    <div class="placeholderSidebarRight placeholderSidebar" id="playlist-div">
+                    </div>
                 </div>
             </div>
+        </div>
     </div>
-</footer>
+    <footer class="text-center">
+        <div class="container-fluid bg-grey text-center" style="padding: 0px !important;">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p><span class="glyphicon glyphicon-map-marker"></span> Los Angeles, US
+                    <br>
+                    <span class="glyphicon glyphicon-envelope"></span> our email address</p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>
