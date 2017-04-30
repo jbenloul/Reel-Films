@@ -1,4 +1,13 @@
 /* Smooth scrolling */
+    var initialPlaylist = [];
+    /// Then we need to filter initialPlaylist into filteredPlaylistArrayt
+    var filteredPlaylist = [];
+    var userProfile = [];
+
+
+
+
+
 $(document).ready(function() {
         // Add smooth scrolling to all links in navbar + footer link
         $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
@@ -26,10 +35,7 @@ $(document).ready(function() {
 
     /* Javascript | Jquery */
     
-    var initialPlaylist = [];
-    /// Then we need to filter initialPlaylist into filteredPlaylistArrayt
-    var filteredPlaylist = [];
-    var userProfile = [];
+
                                                         // USER SELECTS DATE RANGE                      //CALIBER GETS PASSED AS NUMBER         //PUSH ALL RATINGS THAT USER WANTS TO SEE INTO ARRAY
     /* GENRE (number) , INDIE (number) , DATE RANGE1(YEAR)(number) , DATERANGE2(YEAR)(number) , CALIBUR1(6.0)(number), CALIBUR2(9.0)(number), RATING(G)(string), RATING(PG)(string), RATING(R)(string) */
 
