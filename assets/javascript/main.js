@@ -202,8 +202,8 @@ $(document).ready(function() {
         var buttonRatingOne = $('<button>').addClass('question-five-button').text('G').attr("value", 'G');
         var buttonRatingTwo = $('<button>').addClass('question-five-button').text('PG').attr("value", 'PG');
         var buttonRatingThree = $('<button>').addClass('question-five-button').text('PG-13').attr("value", 'PG-13');
-        var buttonRatingFour = $('<button>').addClass('question-five-button').text('R').attr("value", 'R').css('display',block);
-        var buttonStart = $('<button>').addClass('start').text('Start Watching Trailers')
+        var buttonRatingFour = $('<button>').addClass('question-five-button').text('R').attr("value", 'R');
+        var buttonStart = $('<button>').addClass('start').text('Start Watching Trailers').css('display', "block");
 
         questionFiveDiv.prepend(questionFiveText);
 
@@ -211,7 +211,7 @@ $(document).ready(function() {
         questionFiveButtonDiv.append(buttonRatingTwo);
         questionFiveButtonDiv.append(buttonRatingThree);
         questionFiveButtonDiv.append(buttonRatingFour);
-
+        questionFiveButtonDiv.append(buttonStart)
         questionFiveDiv.append(questionFiveButtonDiv);
 
         $('#render-div').append(questionFiveDiv);
@@ -226,7 +226,7 @@ $(document).ready(function() {
         })
 
         $(document).on("click", ".start", function(){
-
+            console.log("start was clicked")
             $('render-div').hide();
             $('render-div').empty();
             videoRender();
@@ -239,8 +239,8 @@ $(document).ready(function() {
 
     function videoRender(){
 
-        var createDiv = $('<div>').addclass('createButton').text("Create a new playlist")
-        $('#placeholderSidebar').prepend(createDiv);
+        var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
+        $('#playlist-div').prepend(createDiv);
 
     }
 
