@@ -9,13 +9,15 @@
     <!-- bootstrap properties -->
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- google fonts "Montserrat" and "Lato" -->
     <link href="http://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet" type="text/css">
     <link href="http://fonts.googleapis.com/css?family=Lato" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script type="text/javascript" src="assets/javascript/main.js"></script>
-    <script src="jquery-3.2.0.min.js"></script>
+    <script src="assets/javascript/jquery-3.2.1.js"></script>
+    <link rel="icon" href="https://lh4.ggpht.com/jHuHOCs1hHv851VdpI-w1l5sIS2PlT9x48FRF-JNgSfIZwdZHqXJvq7_ra9dMHPqIy8d=w300">
 </head>
 <!-- Add scrollspy to <body> to automatically update navbar links when scrolling -->
 
@@ -123,13 +125,24 @@
             <div class="col-sm-2 sidebar-offcanvas" id="sidebar playlist playlist-item playlistItem">
                 <div class="list-group">
                     <!-- their name becomes name of playlist -->
-                    <h5>Previous searches stored here</h5>
-                    <div class="placeholderSidebar">
+                    <!-- ALL PLACEHOLDER ITEMS UNTIL THEY ARE APPENDED -->
+                    <h5 class="sidebar-headers">Previous searches stored here</h5>
+                    <div class="placeholderSidebarLeft">
                         <p>magical area for joe to work with!</p>
+                        <button class="btn btn-default btn-block playlist-buttons"> Playlist Name </button>
                     </div>
                 </div>
             </div>
             <div class="col-sm-8 container" id="render-div">
+                <div class="questions-here">
+                    <h3 class="question-html">What kind of movie do you want to watch? 
+                </h3>
+                    <div class="question-buttons-div">
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                        <button class="btn btn-default btn-block question-buttons"> Info </button>
+                    </div>
+                </div>
                 <div id="main-movie-data-container">
                     <h2 class="movieNameDisplay"> Movie Title Here </h2>
                 </div>
@@ -163,31 +176,44 @@
                         <span class="sr-only">Next</span>
                     </a>
                 </div>
-                <div id="purchase-container">
-                    <br><span style="font-style:normal;"></span>
-                    <p class="buyingOptionDisplay"> buy1 buy2 buy3</p>
+                <div class="purchase-container">
+                    <span class="purchase-option-amazon">
+                    <a target="_blank" href="https://www.amazon.com/"><img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Amazon-icon.png" class="icons" alt ="Purchase From Amazon">$99.99</a>
+                    </span>
+                    <span class="purchase-option-youtube">
+                    <a target="_blank" href="https://www.youtube.com/"><img src="http://icons.veryicon.com/ico/Application/iOS7%20Style%20Metro%20UI/MetroUI%20YouTube.ico" class="icons" alt ="Purchase From Youtube">$99.99</a>
+                    </span>
+                      <span class="purchase-option-itunes">
+                    <a target="_blank" href="https://www.itunes.com/"><img src="https://redalemeden.com/images/itunes/10-0-0.png" class="icons" alt ="Purchase From Itunes">$99.99</a>
+                    </span>
                 </div>
             </div>
             <div class="col-sm-2" id="sidebar playlist playlist-item playlistItem">
                 <div class="list-group">
                     <!-- their name becomes name of playlist -->
-                    <h5>Movie Info</h5>
-                    <div class="placeholderSidebar" id="side-movie-data-container">
-                        <p>magical area for joe to work with!</p>
+                    <h5 class="sidebar-headers">Movie Info</h5>
+                    <div class="placeholderSidebarRight" id="side-movie-data-container">
+                        <p>Plot:</p>
+                        <p class="insert-plot-here">Short plot summary here</p>
+                        <br>
+                        <p>Rating:</p>
+                        <p class="insert-rating-here">G, PG, PG, 13, R</p>
+                        <p>Release Year:</p>
+                        <p class="insert-year-here">1999</p>
+                        <p>Reviews:</p>
+                        <p class="insert-reviews-here">100%</p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Set height and width with css -->
     <footer class="text-center">
         <div class="container-fluid bg-grey text-center" style="padding: 0px !important;">
             <div class="row">
                 <div class="col-sm-12">
                     <p><span class="glyphicon glyphicon-map-marker"></span> Los Angeles, US
-                        <br>
-                        <span class="glyphicon glyphicon-envelope"></span> our email address
-                    </p>
+                    <br>
+                    <span class="glyphicon glyphicon-envelope"></span> our email address</p>
                 </div>
             </div>
         </div>
