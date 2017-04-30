@@ -33,6 +33,49 @@ $(document).ready(function() {
                                                         // USER SELECTS DATE RANGE                      //CALIBER GETS PASSED AS NUMBER         //PUSH ALL RATINGS THAT USER WANTS TO SEE INTO ARRAY
     /* GENRE (number) , INDIE (number) , DATE RANGE1(YEAR)(number) , DATERANGE2(YEAR)(number) , CALIBUR1(6.0)(number), CALIBUR2(9.0)(number), RATING(G)(string), RATING(PG)(string), RATING(R)(string) */
 
+    //Youtube iFrame video player
+
+      // 2. This code loads the IFrame Player API code asynchronously.
+      var tag = document.createElement('script');
+
+      tag.src = "https://www.youtube.com/iframe_api";
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      // 3. This function creates an <iframe> (and YouTube player)
+      //    after the API code downloads.
+      var player;
+      function onYouTubeIframeAPIReady() {
+        player = new YT.Player('player', {
+          height: '390',
+          width: '640',
+          videoId: 'M7lc1UVf-VE',
+          events: {
+            'onReady': onPlayerReady,
+            'onStateChange': onPlayerStateChange
+          }
+        });
+      }
+
+      // 4. The API will call this function when the video player is ready.
+      function onPlayerReady(event) {
+        event.target.playVideo();
+      }
+
+      // 5. The API calls this function when the player's state changes.
+      //    The function indicates that when playing a video (state=1),
+      //    the player should play for six seconds and then stop.
+      var done = false;
+      function onPlayerStateChange(event) {
+        if (event.data == YT.PlayerState.PLAYING && !done) {
+          setTimeout(stopVideo, 6000);
+          done = true;
+        }
+      }
+      function stopVideo() {
+        player.stopVideo();
+      }
+
     // FRONT END TO DO - In order for this onclick to work each dropdown item needs to have the class "genre" and a value="genreName"
     $('.genre').on('click', function(){
         // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
@@ -45,7 +88,6 @@ $(document).ready(function() {
         /*$('#hide-display').css('display',block);*/
         
     });
-
 
     function questionStartFromSecond(){
     
@@ -244,11 +286,20 @@ $(document).ready(function() {
 
     function videoRender(){
 
-        $('render-div').hide();
-        $('render-div').empty();
-
+        $('#render-div').show(1000);
         var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
         $('#playlist-div').prepend(createDiv);
+
+        var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
+        var moviePlayerContainer =$('<div>').addClass('movie-player-container');
+        var moviePlayerDiv = $('<div id="player"></div>').addClass('movie-player-div');
+
+        moviePlayerContainer.prepend(moviePlayerDiv);
+
+        $('#render-div').prepend(movieInfoContainer);
+        $('#render-div').append(moviePlayerDiv);
+
+
 
     }
 
