@@ -1,5 +1,5 @@
-    /* Smooth scrolling */
-    $(document).ready(function() {
+/* Smooth scrolling */
+$(document).ready(function() {
         // Add smooth scrolling to all links in navbar + footer link
         $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
 
@@ -24,46 +24,42 @@
             } // End if
         });
 
-
-            /* Javascript | Jquery */
-
-    // Need to give all genre's attribute of = "genre-name"
-    /// The plan is to store the initial *unfiltered* movie list from The Movie DB in the initialPlaylist array 
+    /* Javascript | Jquery */
+    
     var initialPlaylist = [];
     /// Then we need to filter initialPlaylist into filteredPlaylistArrayt
     var filteredPlaylist = [];
     var userProfile = [];
+                                                        // USER SELECTS DATE RANGE                      //CALIBER GETS PASSED AS NUMBER         //PUSH ALL RATINGS THAT USER WANTS TO SEE INTO ARRAY
+    /* GENRE (number) , INDIE (number) , DATE RANGE1(YEAR)(number) , DATERANGE2(YEAR)(number) , CALIBUR1(6.0)(number), CALIBUR2(9.0)(number), RATING(G)(string), RATING(PG)(string), RATING(R)(string) */
 
     // FRONT END TO DO - In order for this onclick to work each dropdown item needs to have the class "genre" and a value="genreName"
     $('.genre').on('click', function(){
         // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
         if(userProfile.length === 0){
             userProfile.unshift($(this).val());
-            questionStartFromSecond()
-            // SEND USER TO RENDER-DIV AREA AND RENDER QUESTIONS STARTING FROM 2nd QUESTION
+            console.log(userProfile);
+            questionStartFromSecond();         
         }
-        /*$('#hide-display').css('display',block);*/
-        console.log("genre class item clicked!");
-        // NEED TO SEND USER TO 2nd PAGE TO FINISH QUESTIONS
-        // NEED TO RENDER QUESTION DIV INSIDE RENDER DIV
 
+        /*$('#hide-display').css('display',block);*/
+        
     });
 
 
     function questionStartFromSecond(){
-        // NEED TO CHANGE TO PROPER DIV ID
-        // HIDES PLAYER DIV SO QUESTION DIV CAN BE RENDERD
-        $('#render-div').hide(1000);
+    
+        $('#render-div').hide();
         $('#render-div').empty();
-        $('#render-div').show(1000);
+        $('#render-div').show(2000);
 
         var questionTwoDiv = $('<div>').addClass('question-two-div');
-        // NEED TO GET TO GATHER WITH TEAM TO DISCUSS HOW WE WANT TO CHOOSE THE YEAR RANGE - INPUT BOXES ? RADIO BUTTONS ? SOME TYPE OF ADDON THAT ALLOWS US TO CHOOSE IN A RANGE ALL FANCY
+        
         
         var questionTwoButtonDiv = $('<div>').addClass('question-two-button-div'); 
         var questionTwoText =$('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?")/*.css('display',block)*/;
-        var questionTwoButtonIndie = $('<button>').addClass('question-two-button').text("Indie Movie").attr("value", 200000);
-        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button').text("Mainstream Movie").attr("value", 200000);
+        var questionTwoButtonIndie = $('<button>').addClass('question-two-button').text("Indie Movie").attr("value", "200000");
+        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button').text("Mainstream Movie").attr("value", "200000");
 
         questionTwoButtonDiv.append(questionTwoButtonIndie);
         questionTwoButtonDiv.append(questionTwoButtonMainstream);
@@ -76,15 +72,13 @@
         // The div will fade out and once its faded out completely the div will be emptyed and will be ready for the next question to be populated inside. 
         $(document).on("click", ".question-two-button" , function(){
 
-            userProfile.push($(this).val());
+            userProfile.push(parseInt($(this).val()));
 
-            $('#render-div').hide(1500);
+            $('#render-div').hide();
+            $('#render-div').empty();
+            console.log(userProfile);
 
-            setTimeout(function(){ 
-
-                $('#render-div').empty();
-
-            }, 1500);
+            
             
             questionThree();
         })
@@ -92,16 +86,15 @@
 
     function questionThree(){
 
-            $('#render-div').show(1000);
-            // QUESTION 3 IS FILTER BY YEAR RANGE
-            // Create Content
+            $('#render-div').show(2000);
+           
             var questionThreeDiv = $('<div>').addClass('question-three-div');
             var questionThreeButtonDiv = $('<div>').addClass('question-three-button-div');
-            var questionThreeText =$('<p>').addClass('question-three-html').text("Pick A Year Range")/*.css('display',block)*/;
-            var buttonRangeOne = $('<button>').addClass('question-three-button').text('1900-1950').attr("value", "rangeOne");
-            var buttonRangeTwo = $('<button>').addClass('question-three-button').text('1951-1970').attr("value", "rangeTwo");
-            var buttonRangeThree = $('<button>').addClass('question-three-button').text('1971-1990').attr("value", "rangeThree");
-            var buttonRangeFour = $('<button>').addClass('question-three-button').text('1991-Current').attr("value", "rangeFour");
+            var questionThreeText =$('<p>').addClass('question-three-html').text("Pick the year range")/*.css('display',block)*/;
+            var buttonRangeOne = $('<button>').addClass('question-three-button').text('1950').attr("value", "1950");
+            var buttonRangeTwo = $('<button>').addClass('question-three-button').text('1970').attr("value", "1970");
+            var buttonRangeThree = $('<button>').addClass('question-three-button').text('1990').attr("value", "1990");
+            var buttonRangeFour = $('<button>').addClass('question-three-button').text('2017').attr("value", "2017");
 
             // Combine content and render to page
             questionThreeButtonDiv.prepend(buttonRangeOne);
@@ -116,33 +109,31 @@
 
             $(document).on("click", ".question-three-button", function(){
 
-            userProfile.push($(this).val());
+            userProfile.push(parseInt($(this).val()));
 
-            $('#render-div').hide(1500);
+            console.log(userProfile);
 
-            setTimeout(function(){ 
+            if(userProfile.length == 4){
 
-                $('#render-div').empty();
-
-            }, 1500);
-
+            $('#render-div').hide();
+            $('#render-div').empty();
             questionFour();
+
+            }
+
         })
     }
 
     function questionFour(){
-        $('#render-div').show(1000);
+        $('#render-div').show(2000);
 
-
-        // QUESTION 3 IS FILTER BY YEAR RANGE
-        // Create Content
         var questionFourDiv = $('<div>').addClass('question-four-div');
         var questionFourButtonDiv = $('<div>').addClass('question-four-button-div');
-        var questionFourText =$('<p>').addClass('question-three-html').text("What calibur of movie would you like to see?").css('display',block);
-        var buttonCriticOne = $('<button>').addClass('question-four-button').text('I dont care').attr("value", any);
-        var buttonCriticTwo = $('<button>').addClass('question-four-button').text('Bad Movies ONLY').attr("value", bad);
-        var buttonCriticThree = $('<button>').addClass('question-four-button').text('Crown Pleaser').attr("value", crowd);
-        var buttonCriticFour = $('<button>').addClass('question-four-button').text('Critically Acclaimed').attr("value", critically);
+        var questionFourText =$('<p>').addClass('question-three-html').text("What calibur of movie would you like to see?")/*.css('display',block)*/;
+        var buttonCriticOne = $('<button>').addClass('question-four-button').text('I dont care').attr("value", "any");
+        var buttonCriticTwo = $('<button>').addClass('question-four-button').text('Bad Movies ONLY').attr("value", "bad");
+        var buttonCriticThree = $('<button>').addClass('question-four-button').text('Crown Pleaser').attr("value", "crowd");
+        var buttonCriticFour = $('<button>').addClass('question-four-button').text('Critically Acclaimed').attr("value", "critic");
 
         questionFourDiv.prepend(questionFourText);
 
@@ -153,18 +144,103 @@
 
         questionFourDiv.append(questionFourButtonDiv);
 
-        $(document).on("click", ".question-three-button", function(){
+        $('#render-div').append(questionFourDiv);
 
+        $(document).on("click", ".question-four-button", function(){
+
+            if($(this).val() == "any"){
+                userProfile.push(1);
+                userProfile.push(10);
+                $('#render-div').hide();
+                $('#render-div').empty();
+                console.log(userProfile);
+                questionFive();               
+            }
+            if($(this).val() == "bad"){
+                userProfile.push(1)
+                userProfile.push(4)
+                $('#render-div').hide();
+                $('#render-div').empty();
+                console.log(userProfile);
+                questionFive();               
+            }
+            if($(this).val() == "crowd"){
+                userProfile.push(4)
+                userProfile.push(8)
+                $('#render-div').hide();
+                $('#render-div').empty();
+                console.log(userProfile);
+                questionFive();               
+            }
+            if($(this).val() == "critic"){
+                userProfile.push(8)
+                userProfile.push(10)
+                $('#render-div').hide();
+                $('#render-div').empty();
+                console.log(userProfile);
+                questionFive();                  
+            }
+
+            /*
             userProfile.push($(this).val());
-
-            $('render-div').hide(1500);
-
-            setTimeout(function(){ 
-                $('render-div').empty();
-            }, 1500);
-
-            questionFive();
+            console.log(userProfile);
+            $('#render-div').hide();
+            $('#render-div').empty();
+            questionFive();*/
         })
+
+    }
+
+        function questionFive(){
+        $('#render-div').show(2000);
+
+        // QUESTION 3 IS FILTER BY YEAR RANGE
+        // Create Content
+        var questionFiveDiv = $('<div>').addClass('question-five-div');
+        var questionFiveButtonDiv = $('<div>').addClass('question-five-button-div');
+        var questionFiveText =$('<p>').addClass('question-five-html').text("Select Movie Association Ratings:")/*.css('display',block)*/;
+        var buttonRatingOne = $('<button>').addClass('question-five-button').text('G').attr("value", 'G');
+        var buttonRatingTwo = $('<button>').addClass('question-five-button').text('PG').attr("value", 'PG');
+        var buttonRatingThree = $('<button>').addClass('question-five-button').text('PG-13').attr("value", 'PG-13');
+        var buttonRatingFour = $('<button>').addClass('question-five-button').text('R').attr("value", 'R').css('display',block);
+        var buttonStart = $('<button>').addClass('start').text('Start Watching Trailers')
+
+        questionFiveDiv.prepend(questionFiveText);
+
+        questionFiveButtonDiv.prepend(buttonRatingOne);
+        questionFiveButtonDiv.append(buttonRatingTwo);
+        questionFiveButtonDiv.append(buttonRatingThree);
+        questionFiveButtonDiv.append(buttonRatingFour);
+
+        questionFiveDiv.append(questionFiveButtonDiv);
+
+        $('#render-div').append(questionFiveDiv);
+
+        $(document).on("click", ".question-five-button", function(){
+
+            if(userProfile.length<10){
+                userProfile.push($(this).val());
+                console.log(userProfile);
+            }
+
+        })
+
+        $(document).on("click", ".start", function(){
+
+            $('render-div').hide();
+            $('render-div').empty();
+            videoRender();
+
+        });
+
+
+    } // Question 5 end function
+
+
+    function videoRender(){
+
+        var createDiv = $('<div>').addclass('createButton').text("Create a new playlist")
+        $('#placeholderSidebar').prepend(createDiv);
 
     }
 
@@ -206,6 +282,7 @@
       }
 
     // This line will look for any playlists added and will change the playlist when clicked
+    $(document).on("click", ".createButton", createNewPlaylist)
     /*$(document).on("click", ".individualPlaylist", changePlaylist)*/
 
 
