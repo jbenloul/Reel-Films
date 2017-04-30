@@ -225,19 +225,27 @@ $(document).ready(function() {
 
         })
 
+        
         $(document).on("click", ".start", function(){
+            // Only if at least one rating option has been selected
+            if(userProfile.length >= 7){
             console.log("start was clicked")
-            $('render-div').hide();
-            $('render-div').empty();
+            $('#render-div').hide();
+            $('#render-div').empty();
             videoRender();
+            }
 
         });
+        
 
 
     } // Question 5 end function
 
 
     function videoRender(){
+
+        $('render-div').hide();
+        $('render-div').empty();
 
         var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
         $('#playlist-div').prepend(createDiv);
