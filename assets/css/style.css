@@ -39,6 +39,12 @@ body {
         border-color: transparent !important;
         color: #fff !important;
     }
+
+
+    .reelLogo{
+        width:35px;
+        height: 35px;
+    }
     /* Jumbotron */
     
     .jumbotron {
@@ -157,14 +163,34 @@ footer p {
 
     }
 
+
 .question-buttons{
     width:50% !important;
     margin: auto;
+    color: #fff;
+    background-color: #6496c8;
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px #27496d;
+    margin-bottom: 10px !important;
     }
 
     .question-buttons:hover{
-        color: black;
+    background-color: #417cb8;
 }
+
+    .question-buttons:focus {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+}
+
+.buttonFocused {
+  background-color: #417cb8;
+  box-shadow: 0 5px #27496d;
+  transform: translateY(5px);
+}
+
 
     .question-html{
 
@@ -173,15 +199,6 @@ footer p {
     .question-buttons-div{
 
     }
-
-
-    .sidebar-headers{
-        font-size: 20px;
-        font-weight: bold;
-        color: #2988BC;
-
-    }
-
 
 .purchase-container{
     border: 1px solid black;

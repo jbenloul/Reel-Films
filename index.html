@@ -18,19 +18,17 @@
     <script type="text/javascript" src="assets/javascript/main.js"></script>
     <script src="assets/javascript/jquery-3.2.1.js"></script>
     <link rel="icon" href="https://lh4.ggpht.com/jHuHOCs1hHv851VdpI-w1l5sIS2PlT9x48FRF-JNgSfIZwdZHqXJvq7_ra9dMHPqIy8d=w300">
+    <title>Reel Films</title>
 </head>
 <!-- Add scrollspy to <body> to automatically update navbar links when scrolling -->
 
 <body id="myPage" data-spy="scroll" data-target=".navbar" data-offset="60">
     <nav class="navbar navbar-default navbar-fixed-top">
+
         <div class="container">
+        <img src="https://lh4.ggpht.com/jHuHOCs1hHv851VdpI-w1l5sIS2PlT9x48FRF-JNgSfIZwdZHqXJvq7_ra9dMHPqIy8d=w300" style="width:35px; height: 35px">
             <div class="navbar-header">
-                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="myNavbar">
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a rel="nofollow" rel="noreferrer" href="#" class="navbar-brand">Reel Films</a>
+                <a class="navbar-brand">Reel Films</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <!--   <ul class="nav navbar-nav navbar-right">
@@ -126,15 +124,18 @@
                 <div class="list-group">
                     <!-- their name becomes name of playlist -->
                     <!-- ALL PLACEHOLDER ITEMS UNTIL THEY ARE APPENDED -->
-                    <h5 class="sidebar-headers">Previous searches stored here</h5>
-                    <div class="placeholderSidebarLeft">
-                        <p>magical area for joe to work with!</p>
-                        <button class="btn btn-default btn-block playlist-buttons"> Playlist Name </button>
+
+                    <div class="placeholderSidebarLeft placeholderSidebar" id="playlist-div">
+                        
+
                     </div>
                 </div>
             </div>
             <div class="col-sm-8 container" id="render-div">
-                <div class="questions-here">
+            <!-- WHERE JOES QUESTIONS WILL RENDER -->
+
+
+            <!--   <div class="questions-here">
                     <h3 class="question-html">What kind of movie do you want to watch? 
                 </h3>
                     <div class="question-buttons-div">
@@ -142,41 +143,13 @@
                         <button class="btn btn-default btn-block question-buttons"> Info </button>
                         <button class="btn btn-default btn-block question-buttons"> Info </button>
                     </div>
-                </div>
-                <div id="main-movie-data-container">
-                    <h2 class="movieNameDisplay"> Movie Title Here </h2>
-                </div>
-                <!-- entire carousel -->
-                <div class="carousel slide" id="myCarousel" data-ride="Carousel">
-                    <!-- items inside the carousel. Not the buttons -->
-                    <div class="carousel-inner active" role="listbox">
-                        <!-- one of the spins -->
-                        <div class="item active">
-                            <!-- the links with the embedded movie trailer get inserted here -->
-                            <div class="carousel-inner">
-                                <div>
-                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/uLU5chJ3cRM" frameborder="0" allowfullscreen></iframe>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- other spin -->
-                        <div class="item">
-                            <div class="carousel-inner">
-                                <iframe width="560" height="315" src="https://www.youtube.com/embed/uLU5chJ3cRM" frameborder="0" allowfullscreen></iframe>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Left and Right controls -->
-                    <a href="#myCarousel" class="left carousel-control" role="button" data-slide="prev">
-                        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-                        <span class="sr-only">Previous</span>
-                    </a>
-                    <a href="#myCarousel" class="right carousel-control" role="button" data-slide="next">
-                        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-                        <span class="sr-only">Next</span>
-                    </a>
-                </div>
-                <div class="purchase-container">
+                </div> -->
+
+                <!-- This is where the Main movie info goes. movie-info-container class -->
+
+
+
+<!--                 <div class="purchase-container"> IF WE CAN FIGURE OUT ON TIME
                     <span class="purchase-option-amazon">
                     <a target="_blank" href="https://www.amazon.com/"><img src="http://icons.iconarchive.com/icons/uiconstock/socialmedia/512/Amazon-icon.png" class="icons" alt ="Purchase From Amazon">$99.99</a>
                     </span>
@@ -186,22 +159,17 @@
                       <span class="purchase-option-itunes">
                     <a target="_blank" href="https://www.itunes.com/"><img src="https://redalemeden.com/images/itunes/10-0-0.png" class="icons" alt ="Purchase From Itunes">$99.99</a>
                     </span>
-                </div>
+                </div> -->
+                
             </div>
             <div class="col-sm-2" id="sidebar playlist playlist-item playlistItem">
                 <div class="list-group">
                     <!-- their name becomes name of playlist -->
-                    <h5 class="sidebar-headers">Movie Info</h5>
-                    <div class="placeholderSidebarRight" id="side-movie-data-container">
-                        <p>Plot:</p>
-                        <p class="insert-plot-here">Short plot summary here</p>
-                        <br>
-                        <p>Rating:</p>
-                        <p class="insert-rating-here">G, PG, PG, 13, R</p>
-                        <p>Release Year:</p>
-                        <p class="insert-year-here">1999</p>
-                        <p>Reviews:</p>
-                        <p class="insert-reviews-here">100%</p>
+
+                  
+                    <div class="placeholderSidebarRight placeholderSidebar" id="playlist-div">
+
+                  
                     </div>
                 </div>
             </div>
