@@ -134,6 +134,7 @@ $(document).ready(function() {
         // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
         if (counter === 0) {
             userProfile.unshift($(this).val());
+            findTitle();
             console.log(userProfile);
             $('#hide-display').css('display', "block");
             $('.placeholderSidebarLeft').css("display", "none")
@@ -590,8 +591,24 @@ $(document).ready(function() {
 
     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
     function createNewPlaylist() {
-
+         // Arrays of movie filtered titles
         userProfile = [];
+        movieTitleGen = [];
+        movieMainInd = [];
+        movieYear = [];
+        movieImdbRat = [];
+        movieMpaa = [];
+        // counters
+        counterP = 1;
+        counterT = 0;
+        counterY = 0;
+        counterR = 0;
+        counterRa = 0;
+        // Array lengths
+        movieTitleL = 0;
+        movieMainIndL = 0;
+        movieYearL = 0;
+        movieImbdRatL = 0;
         console.log("test")
 
         $('#render-div').hide();
@@ -641,6 +658,7 @@ $(document).ready(function() {
                 // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
                 userProfile.unshift(parseInt($(this).val()));
                 console.log("userProfile array after button click, before questionStartFromSecond(): " + userProfile);
+                findTitle();
                 questionStartFromSecond();
 
 
