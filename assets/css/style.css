@@ -4,10 +4,9 @@ body {
         color: #818181;
     }
 
-/*#hide-display{
+#hide-display{
         display:none;
-}*/
-
+}
 
     /* navbar */
     
@@ -112,7 +111,10 @@ footer p {
    color: #ffffff !important;
 }
 
-
+/* Added 4/30/2017 by Joe because I had to .hide() the left and right columns which collapsed the space */
+#jump-to-here{
+    min-height: 450px;
+}
 
 .placeholderSidebarLeft{
     background-color: #2988BC;
@@ -173,7 +175,6 @@ footer p {
     .question-buttons-div{
 
     }
-
 
 .purchase-container{
     border: 1px solid black;
