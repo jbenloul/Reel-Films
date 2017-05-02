@@ -38,6 +38,18 @@ $(document).ready(function() {
     // variable to compare whether indie was selected
     var indie = 200000;
 
+
+    // This is to make the buttons stick when clicked
+    $(document).on("click", ".question-buttons", function() {
+        $(this).focus().addClass("buttonFocused");
+              console.log("WORKED!")
+            // if ($(this).hasClass('buttonFocused')) {
+            //     $(this).removeClass('buttonFocused')
+            // } else {
+            //     $(this).addClass('buttonFocused')
+            // }
+    });
+
     // Counts through the Mpaa array to get titles of movies
     var movieMpaaCounter = 0;
     // holds the videoId to display youtube video
@@ -53,17 +65,7 @@ $(document).ready(function() {
        $(".question-buttons").click(function() {
         $(".question-buttons").addClass("buttonFocused");
         $(".question-buttons").focus();
-        console.log("WORKED!")
-    })
 
-
-    $('.question-buttons').click(function() {
-        if ($(this).hasClass('buttonFocused')) {
-            $(this).removeClass('buttonFocused')
-        } else {
-            $(this).addClass('buttonFocused')
-        }
-    });
     /* Javascript | Jquery */
 
     // USER SELECTS DATE RANGE                      //CALIBER GETS PASSED AS NUMBER         //PUSH ALL RATINGS THAT USER WANTS TO SEE INTO ARRAY
@@ -135,13 +137,13 @@ $(document).ready(function() {
         $('#render-div').empty();
         $('#render-div').show(2000);
 
-        var questionTwoDiv = $('<div>').addClass('question-two-div');
+        var questionTwoDiv = $('<div>').addClass('question-two-div questions-here');
 
 
         var questionTwoButtonDiv = $('<div>').addClass('question-two-button-div');
         var questionTwoText = $('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?") /*.css('display',block)*/ ;
-        var questionTwoButtonIndie = $('<button>').addClass('question-two-button').text("Indie Movie").attr("value", "199999");
-        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button').text("Mainstream Movie").attr("value", "200001");
+        var questionTwoButtonIndie = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Indie Movie").attr("value", "199999");
+        var questionTwoButtonMainstream = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Mainstream Movie").attr("value", "200001");
 
         questionTwoButtonDiv.append(questionTwoButtonIndie);
         questionTwoButtonDiv.append(questionTwoButtonMainstream);
@@ -176,13 +178,13 @@ $(document).ready(function() {
 
         $('#render-div').show(2000);
 
-        var questionThreeDiv = $('<div>').addClass('question-three-div');
+        var questionThreeDiv = $('<div>').addClass('question-three-div questions-here');
         var questionThreeButtonDiv = $('<div>').addClass('question-three-button-div');
         var questionThreeText = $('<p>').addClass('question-three-html').text("Pick the year range") /*.css('display',block)*/ ;
-        var buttonRangeOne = $('<button>').addClass('question-three-button').text('1950').attr("value", "1950");
-        var buttonRangeTwo = $('<button>').addClass('question-three-button').text('1970').attr("value", "1970");
-        var buttonRangeThree = $('<button>').addClass('question-three-button').text('1990').attr("value", "1990");
-        var buttonRangeFour = $('<button>').addClass('question-three-button').text('2017').attr("value", "2017");
+        var buttonRangeOne = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1950').attr("value", "1950");
+        var buttonRangeTwo = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1970').attr("value", "1970");
+        var buttonRangeThree = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1990').attr("value", "1990");
+        var buttonRangeFour = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('2017').attr("value", "2017");
 
         // Combine content and render to page
         questionThreeButtonDiv.prepend(buttonRangeOne);
@@ -194,15 +196,17 @@ $(document).ready(function() {
         questionThreeDiv.append(questionThreeButtonDiv);
 
         $('#render-div').append(questionThreeDiv);
-        if(counter === 0){
-        $(document).on("click", ".question-three-button", function() {
+        if (counter === 0) {
+            $(document).on("click", ".question-three-button", function() {
 
-            userProfile.push(parseInt($(this).val()));
-            // console.log(userProfile[2]);
-            // console.log(userProfile[3]);
-            console.log(userProfile);
+                userProfile.push(parseInt($(this).val()));
+                // console.log(userProfile[2]);
+                // console.log(userProfile[3]);
+                console.log(userProfile);
 
-            if (userProfile.length == 4) {
+                // LETS TRY TO APPEND THE YEAR RANGE HERE
+
+                if (userProfile.length == 4) {
 
                     if (userProfile[userProfile.length - 1] > userProfile[userProfile.length - 2]) {
                         $('#render-div').hide();
@@ -222,7 +226,7 @@ $(document).ready(function() {
                         yearInterval();
                         questionFour();
                     }
-            }
+                }
 
             })
         } // end of counter if statement
@@ -231,13 +235,13 @@ $(document).ready(function() {
     function questionFour() {
         $('#render-div').show(2000);
 
-        var questionFourDiv = $('<div>').addClass('question-four-div');
+        var questionFourDiv = $('<div>').addClass('question-four-div questions-here');
         var questionFourButtonDiv = $('<div>').addClass('question-four-button-div');
-        var questionFourText = $('<p>').addClass('question-three-html').text("What calibur of movie would you like to see?") /*.css('display',block)*/ ;
-        var buttonCriticOne = $('<button>').addClass('question-four-button').text('I dont care').attr("value", "any");
-        var buttonCriticTwo = $('<button>').addClass('question-four-button').text('Bad Movies ONLY').attr("value", "bad");
-        var buttonCriticThree = $('<button>').addClass('question-four-button').text('Crown Pleaser').attr("value", "crowd");
-        var buttonCriticFour = $('<button>').addClass('question-four-button').text('Critically Acclaimed').attr("value", "critic");
+        var questionFourText = $('<p>').addClass('question-three-html').text("What caliber of movie would you like to see?") /*.css('display',block)*/ ;
+        var buttonCriticOne = $('<button>').addClass('question-four-button question-buttons btn btn-default btn-block').text('I dont care').attr("value", "any");
+        var buttonCriticTwo = $('<button>').addClass('question-four-button question-buttons btn btn-default btn-block').text('Bad Movies ONLY').attr("value", "bad");
+        var buttonCriticThree = $('<button>').addClass('question-four-button question-buttons btn btn-default btn-block').text('Crowd Pleasers').attr("value", "crowd");
+        var buttonCriticFour = $('<button>').addClass('question-four-button question-buttons btn btn-default btn-block').text('Critically Acclaimed').attr("value", "critic");
 
         questionFourDiv.prepend(questionFourText);
 
@@ -249,55 +253,57 @@ $(document).ready(function() {
         questionFourDiv.append(questionFourButtonDiv);
 
         $('#render-div').append(questionFourDiv);
-        if(counter === 0){
-        $(document).on("click", ".question-four-button", function() {
+        if (counter === 0) {
+            $(document).on("click", ".question-four-button", function() {
 
-            if ($(this).val() == "any") {
-                userProfile.push(1);
-                userProfile.push(10);
-                movieRating();
-                $('#render-div').hide();
-                $('#render-div').empty();
-                console.log(userProfile);
-                questionFive();
-            }
-            if ($(this).val() == "bad") {
-                userProfile.push(1);
-                userProfile.push(4);
-                movieRating();
-                $('#render-div').hide();
-                $('#render-div').empty();
-                console.log(userProfile);
-                questionFive();
-            }
-            if ($(this).val() == "crowd") {
-                userProfile.push(4);
-                userProfile.push(8);
-                movieRating();
-                $('#render-div').hide();
-                $('#render-div').empty();
-                console.log(userProfile);
-                questionFive();
-            }
-            if ($(this).val() == "critic") {
-                userProfile.push(8);
-                userProfile.push(10);
-                movieRating();
-                $('#render-div').hide();
-                $('#render-div').empty();
-                console.log(userProfile);
-                questionFive();
-            }
+                if ($(this).val() == "any") {
+                    userProfile.push(1);
+                    userProfile.push(10);
+                    movieRating();
+                    $('#render-div').hide();
+                    $('#render-div').empty();
+                    console.log(userProfile);
+                    questionFive();
+                }
+                if ($(this).val() == "bad") {
+                    userProfile.push(1);
+                    userProfile.push(4);
+                    movieRating();
+                    $('#render-div').hide();
+                    $('#render-div').empty();
+                    console.log(userProfile);
+                    questionFive();
+                }
+                if ($(this).val() == "crowd") {
+                    userProfile.push(4);
+                    userProfile.push(8);
+                    movieRating();
+                    $('#render-div').hide();
+                    $('#render-div').empty();
+                    console.log(userProfile);
+                    questionFive();
+                }
+                if ($(this).val() == "critic") {
+                    userProfile.push(8);
+                    userProfile.push(10);
+                    movieRating();
+                    $('#render-div').hide();
+                    $('#render-div').empty();
+                    console.log(userProfile);
+                    questionFive();
+                }
 
-            /*
-            userProfile.push($(this).val());
-            console.log(userProfile);
-            $('#render-div').hide();
-            $('#render-div').empty();
-            questionFive();*/
+                /*
+                userProfile.push($(this).val());
+                console.log(userProfile);
+                $('#render-div').hide();
+                $('#render-div').empty();
+                questionFive();*/
             })
         } // end of counter if statement
     }
+    var namePlaylistValue;
+
 
 function questionFive() {
                 $('#render-div').show(2000);
@@ -376,6 +382,7 @@ function questionFive() {
                             ////////} /* If counter statement end */
                             $('#playlist-div').append(createNewPlaylistDiv);
                         } // Question 5 end function
+
 
 
 
@@ -546,16 +553,19 @@ function questionFive() {
 
 
     function videoRender() {
-
+        $('#render-div').hide(1000);
+        $('#render-div').empty(1000);
         $('#render-div').show(1000);
         $('.placeholderSidebarLeft').css("display", "inline-block");
         $('.placeholderSidebarRight').css("display", "inline-block");
 
         /// MORE JOE CODE -- NEED TO EMPTY MOVIE INFO DIVS EACH TIME ///
         $('.placeholderSidebarRight').empty();
+        $('.placeholderSidebarLeft').empty();
 
         if (counter === 0) {
-            var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
+            var createDiv = $('<button>').addClass('createButton btn btn-default btn-block').text('Create New Playlist').css('display', "block");
+            $('#playlist-div').prepend($('<hr>'));
             $('#playlist-div').prepend(createDiv);
 
         }
@@ -583,7 +593,7 @@ function questionFive() {
             var runTime = response.Runtime;
             var releaseYear = response.Released;
             var movieAssociationRating = response.Rated;
-            var tomatoRating = response.Ratings[1].Value;
+            var tomatoRating = response.Ratings[0].Value;
             var metaRating = response.Ratings[2].Value;
             var poster = response.Poster;
 
@@ -613,7 +623,7 @@ function questionFive() {
             ratingsDiv.prepend(textRatings);
 
             var tomatoDiv =$('<div>').addClass('review-container').css('display','inline-block');
-            var tomatoText =$('<p>').addClass('tomato-text').text("Rotten Tomatoes: " + tomatoRating);
+            var tomatoText =$('<p>').addClass('tomato-text').text("IMDB Rating: " + tomatoRating);
 
             var metaDiv =$('<div>').addClass('review-container').css('display','inline-block');
             var metaText =$('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
@@ -659,6 +669,19 @@ function questionFive() {
 
     }
 
+    function previousVideo(){
+        if(movieMpaaCounter !== 0){
+            movieMpaaCounter--;
+            videoRender();
+        }
+
+    }
+
+    function nextVideo(){
+        movieMpaaCounter++;
+        videoRender();
+    }
+
     function makeAjax(i){
         var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=" + movieMpaa[i] +  "&regionCode=US&safeSearch=moderate&type=video&videoCategoryId=30&key=AIzaSyADtMP3eVgiTcTPqx4W8qXgkAZtillp_UI";
 
@@ -676,10 +699,9 @@ function questionFive() {
         });
     };
 
-
     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
     function createNewPlaylist() {
-         // Arrays of movie filtered titles
+        // Arrays of movie filtered titles
         userProfile = [];
         movieTitleGen = [];
         movieMainInd = [];
@@ -760,7 +782,42 @@ function questionFive() {
 
     // This line will look for any playlists added and will change the playlist when clicked
     $(document).on("click", ".createButton", createNewPlaylist);
-       
+    $(document).on("click", ".left-arrow", previousVideo);
+    $(document).on("click", ".right-arrow", nextVideo);
+
 
 
 });
+
+
+
+
+
+
+
+//         var questionOneDiv = $('<div>').addClass('question-one-div questions-here');
+
+
+//         var questionOneButtonDiv = $('<div>').addClass('question-One-button-div'); 
+//         var questionOneText =$('<p>').addClass('question-One-html').text("What genre of movie would you like to watch?")/*.css('display',block)*/;
+
+//         var questionOneDropdownDiv = $('<div>').addClass('dropdown btn-group')
+//         var questionOneFirstCategory = $('<button>').addClass('btn btn-default dropdown-toggle').html("Action Packed").attr({"id": "dropdownMenu1",
+//             "data-toggle": "dropdown", "aria-haspopup": "true", "aria-expanded": "true", "type": "button"}).html($('<ul>').addClass("dropdown-menu dropdown-menu-center").html("<li class='genre' genres='28' value='28'>").text("Action").html("</a></li><li class='genre' genres='12' value='12'><a href='#jump-to-here'>").text("Adventure").html("</a></li><li class='genre' genres='10752' value='10752'><a href='#jump-to-here'>War</a></li><li class='genre' genres='37' value='37'><a href='#jump-to-here'>Western</a></li></ul></div>"));
+
+//         console.log(questionOneDropdownDiv)
+//         console.log(questionOneFirstCategory)
+
+// //create an object of 5 objects with the key value pairs that link up, and in a for loop, have it render the values.
+
+
+//         questionOneButtonDiv.append(questionOneFirstCategory);
+//         // questionOneButtonDiv.append(questionOneSecondCategory);
+//         // questionOneButtonDiv.append(questionOneThirdCategory);
+//         // questionOneButtonDiv.append(questionOneFourthCategory);
+//         // questionOneButtonDiv.append(questionOneFifthCategory);
+//         // questionOneDiv.prepend(questionOneText);
+//         // questionOneDiv.append(questionOneButtonDiv);
+
+//          $('#render-div').append(questionOneButtonDiv);
+//     // }
