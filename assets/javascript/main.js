@@ -409,7 +409,7 @@ $(document).ready(function() {
                     function findTitle() {
                         // console.log("START OF MOVIE TITLE");
                         // produce Titles 
-                        if (counterP < 10) {
+                        if (counterP < 25) {
                             queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=a4a27185a8d4d5eda2d9b10434e6cad8&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=" + userProfile[0] + "&page=" + counterP;
                             $.ajax({
                                 url: queryURL,
@@ -557,13 +557,13 @@ $(document).ready(function() {
 
                     // pushes indie films
                     function add(numImbdVotes) {
-                        if (numImbdVotes < 50000) {
+                        if (numImbdVotes > 50000 && numImbdVotes < 100000) {
                             movieMainInd.push(movieTitleGen[counterT]);
                             // console.log(movieMainInd);
                         }
                     } // end of add function pushes indie films
                     function add2(numImbdVotes) {
-                        if (numImbdVotes > 50000) {
+                        if (numImbdVotes > 100000) {
                             movieMainInd.push(movieTitleGen[counterT]);
                             // console.log(movieMainInd);
                         }
@@ -613,12 +613,14 @@ $(document).ready(function() {
                             var runTime = response.Runtime;
                             var releaseYear = response.Released;
                             var movieAssociationRating = response.Rated;
-                            // if(response.Ratings !== undefined){
-                            var tomatoRating = response.Ratings[1].Value;
-                            // };
-                            // if(response.Ratings !== undefined){
-                            var metaRating = response.Ratings[2].Value;
-                            // };
+                  			if(response.Ratings[0]){
+                  			var sourceVal1 = response.Ratings[0].Source;
+                            var tomatoRating = response.Ratings[0].Value;
+                           	}
+                            if(response.Ratings[1]){
+                            var sourceVal2 = response.Ratings[1].Source;	
+                            var metaRating = response.Ratings[1].Value;
+                            };
                             var poster = response.Poster;
 
                             // Appending items to movieInfoContainer (top container)
@@ -647,20 +649,20 @@ $(document).ready(function() {
                             ratingsDiv.prepend(textRatings);
 
                             // check rotten tomatoe rating exists
-                            // if(tomatoRating !== undefined){
+                            if(tomatoRating){
                             var tomatoDiv = $('<div>').addClass('review-container').css('display', 'inline-block');
 
-                            var tomatoText = $('<p>').addClass('tomato-text').text("Rotten Tomatoes: " + tomatoRating);
+                            var tomatoText = $('<p>').addClass('tomato-text').text(sourceVal1 + ": " + tomatoRating);
                             tomatoDiv.append(tomatoText);
-                             // };
+                             };
 
                              // check meta rating exists
-                             // if(metaRating !== undefined){
+                             if(metaRating){
                             var metaDiv = $('<div>').addClass('review-container').css('display', 'inline-block');
 
-                            var metaText = $('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
+                            var metaText = $('<p>').addClass('meta-text').text(sourceVal2 + ": "+ metaRating);
                             metaDiv.append(metaText);
-                            // }
+                            }
                             
 
                             ratingsDiv.append(tomatoDiv);
