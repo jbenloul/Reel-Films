@@ -556,14 +556,14 @@ $(document).ready(function() {
         $('.placeholderSidebarLeft').css("display", "inline-block");
         $('.placeholderSidebarRight').css("display", "inline-block");
 
+        /// MORE JOE CODE -- NEED TO EMPTY MOVIE INFO DIVS EACH TIME ///
+        $('.placeholderSidebarRight').empty();
+
         if (counter === 0) {
             var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
             $('#playlist-div').prepend(createDiv);
 
         }
-
-        // var newPlaylist = $('<button>').addClass('btn btn-default btn-block').text('New Playlist').css('display', "block");
-        // createDiv.append(newPlaylist)
 
         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
         var moviePlayerContainer = $('<div>').addClass('movie-player-container');
@@ -571,6 +571,72 @@ $(document).ready(function() {
         var leftArrow = $('<img>').addClass('left-arrow').attr('src', '../images/leftarrow.png').css('display', "inline-block");
         var rightArrow = $('<img>').addClass('right-arrow').attr('src', '../images/rightarrow.png').css('display', "inline-block");
         var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows').css('display', "inline-block");
+
+
+                //////////////////////////////////////////////////////////////////////////////////////
+
+        /* Joe's code addition to render current movie stats to video render screen */
+        var queryURLS = "http://www.omdbapi.com/?t="  + movieMpaa[movieMpaaCounter];
+
+        $.ajax({
+                url: queryURLS,
+                method: "GET"
+        }).done(function(response) {
+
+            var movieTitle = response.Title;
+            var movieSummary = response.Plot;
+            var runTime = response.Runtime;
+            var releaseYear = response.Released;
+            var movieAssociationRating = response.Rated;
+            var tomatoRating = response.Ratings[1].Value;
+            var metaRating = response.Ratings[2].Value;
+            var poster = response.Poster;
+
+            // Appending items to movieInfoContainer (top container)
+            var movieTitleText = $('<p>').addClass('movie-title-text').text(movieTitle);
+            movieInfoContainer.prepend(movieTitleText);
+
+            var movieSummaryText = $('<p>').addClass('movie-summary-text').text(movieSummary);
+            movieInfoContainer.append(movieSummaryText);
+
+            // Appending Runtime, Release Date, rottem tomato score, metacritic score and poster // 
+
+            var runTimeText =$('<p>').addClass('run-time-text').text('Runtime: ' + runTime).css("align","left");
+            $('.placeholderSidebarRight').prepend(runTimeText);
+
+            var releaseYearText = $('<p>').addClass('release-year-text').text('Release Year: ' + releaseYear).css("align","left");
+            $('.placeholderSidebarRight').append(releaseYearText);
+
+            var movieAssociationRatingText = $('<p>').addClass('movie-association-rating-text').text('Rated: ' + movieAssociationRating).css("align","left");
+            $('.placeholderSidebarRight').append(movieAssociationRatingText);
+
+
+            // Rotten Tomatoe and Metacritic Rating stuff ///////////////////////////////////////////////////// 
+            var ratingsDiv = $('<div>').addClass('ratings-div');
+            var textRatings = $('<p>').text("Reviews:").addClass('review-title');
+
+            ratingsDiv.prepend(textRatings);
+
+            var tomatoDiv =$('<div>').addClass('review-container').css('display','inline-block');
+            var tomatoText =$('<p>').addClass('tomato-text').text("Rotten Tomatoes: " + tomatoRating);
+
+            var metaDiv =$('<div>').addClass('review-container').css('display','inline-block');
+            var metaText =$('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
+ 
+            tomatoDiv.append(tomatoText);
+            metaDiv.append(metaText);
+
+            ratingsDiv.append(tomatoDiv);
+            ratingsDiv.append(metaDiv);
+
+            $('.placeholderSidebarRight').append(ratingsDiv);
+
+            // Poster (its basically an image link/////////////////////////////////////////////////////////////////
+
+            var posterImage = $('<img>').addClass('poster-image').attr('src', poster).attr("width","90%");
+            $('.placeholderSidebarRight').append(posterImage);
+
+            });  //// JOES NEW CODE END
 
 
         moviePlayerContainer.prepend(moviePlayerDiv);
