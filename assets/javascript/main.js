@@ -587,11 +587,11 @@ $(document).ready(function() {
                         }
 
                         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
-                        var moviePlayerContainer = $('<div>').addClass('movie-player-container');
+                        var moviePlayerContainer = $('<div>').addClass('movie-player-container ');
                         var moviePlayerDiv = $('<div id="player"></div>').addClass('movie-player-div');
-                        var leftArrow = $('<img>').addClass('left-arrow').attr('src', '../images/leftarrow.png').css('display', "inline-block");
-                        var rightArrow = $('<img>').addClass('right-arrow').attr('src', '../images/rightarrow.png').css('display', "inline-block");
-                        var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows').css('display', "inline-block");
+                        var leftArrow = $('<img>').addClass('left-arrow').attr('src', 'assets/images/leftarrow.png');
+                        var rightArrow = $('<img>').addClass('right-arrow').attr('src', 'assets/images/rightarrow.png');
+                        var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows');
 
 
                         //////////////////////////////////////////////////////////////////////////////////////
@@ -675,10 +675,11 @@ $(document).ready(function() {
                         moviePlayerContainer.prepend(moviePlayerDiv);
 
                         $('#render-div').prepend(movieInfoContainer);
+                        $('#render-div').append(leftArrow);
+
                         $('#render-div').append(moviePlayerContainer);
 
-                        $('#render-div').append(leftArrow);
-                        $('#render-div').append(textBetweenArrows);
+                        // $('#render-div').append(textBetweenArrows);
                         $('#render-div').append(rightArrow);
 
                         makeAjax(movieMpaaCounter);
