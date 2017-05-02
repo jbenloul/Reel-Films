@@ -304,119 +304,85 @@ $(document).ready(function() {
     }
     var namePlaylistValue;
 
-    function questionFive() {
-        $('#render-div').show(2000);
 
-        // QUESTION 3 IS FILTER BY YEAR RANGE
-        // Create Content
-        var questionFiveDiv = $('<div>').addClass('question-five-div questions-here');
-        var questionFiveButtonDiv = $('<div>').addClass('question-five-button-div');
-        var questionFiveText = $('<p>').addClass('question-five-html').text("Select Movie Association Ratings:") /*.css('display',block)*/ ;
-        var buttonRatingOne = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('G').attr("value", 'G');
-        var buttonRatingTwo = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('PG').attr("value", 'PG');
-        var buttonRatingThree = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('PG-13').attr("value", 'PG-13');
-        var buttonRatingFour = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('R').attr("value", 'R');
-        var buttonStart = $('<button>').addClass('start submit-button btn btn-success btn-block').text('Start Watching Trailers').css('display', "block");
+function questionFive() {
+                $('#render-div').show(2000);
+                // QUESTION 3 IS FILTER BY YEAR RANGE
+                // Create Content
+                var questionFiveDiv = $('<div>').addClass('question-five-div');
+                var questionFiveButtonDiv = $('<div>').addClass('question-five-button-div');
+                var questionFiveText = $('<p>').addClass('question-five-html').text("Select Movie Association Ratings:") /*.css('display',block)*/ ;
+                var buttonRatingOne = $('<button>').addClass('question-five-button').text('G').attr("value", 'G');
+                var buttonRatingTwo = $('<button>').addClass('question-five-button').text('PG').attr("value", 'PG');
+                var buttonRatingThree = $('<button>').addClass('question-five-button').text('PG-13').attr("value", 'PG-13');
+                var buttonRatingFour = $('<button>').addClass('question-five-button').text('R').attr("value", 'R');
+                var buttonStart = $('<button>').addClass('start').text('Start Watching Trailers').css('display', "block");
+                // Name of the playlist
+                var nameYourPlaylistDiv = $('<input>').attr({
+                    "id": "playlist-name",
+                    "placeholder": "Name Your Playlist"
+                });
+                namePlaylistValue = nameYourPlaylistDiv.val().trim();
+                console.log(namePlaylistValue);
+                questionFiveDiv.prepend(questionFiveText);
+                questionFiveButtonDiv.prepend(buttonRatingOne);
+                questionFiveButtonDiv.append(buttonRatingTwo);
+                questionFiveButtonDiv.append(buttonRatingThree);
+                questionFiveButtonDiv.append(buttonRatingFour);
+                questionFiveButtonDiv.append(namePlaylistValue);
+                questionFiveButtonDiv.append(buttonStart)
+                questionFiveDiv.append(questionFiveButtonDiv);
+                $('#render-div').append(questionFiveDiv);
+                if (counter === 0) {
+                    $(document).on("click", ".question-five-button", function() {
+                        if (userProfile.length < 10) {
+                            counterRa = 0;
+                            userProfile.push($(this).val());
+                            console.log(userProfile);
+                            movieRated();
+                        }
+                    }); // end of docutment click question
+                    $(document).on("click", ".start", function() {
+                                // Only if at least one rating option has been selected
+                                if (userProfile.length >= 7) {
+                                    console.log("start was clicked");
+                                    $('#render-div').hide();
+                                    $('#render-div').empty();
+                                    videoRender();
+                                }
+                                var config = {
+                                    apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
+                                    authDomain: "reel-films.firebaseapp.com",
+                                    databaseURL: "https://reel-films.firebaseio.com",
+                                    projectId: "reel-films",
+                                    storageBucket: "reel-films.appspot.com",
+                                    messagingSenderId: "226828627848"
+                                };
+                                firebase.initializeApp(config);
+                                var database = firebase.database();
+                                database.ref().push({
+                                    Genre: userProfile[0],
+                                    Popularity: userProfile[1],
+                                    StartYear: userProfile[2],
+                                    EndYear: userProfile[3],
+                                    ReviewStart: userProfile[4],
+                                    ReviewEnd: userProfile[5],
+                                    Rating1: userProfile[6],
+                                    //PlaylistName
+                                    //OtherRatings
+                                    //Email
+                                    }); // end of the database push 
+                                }); // end of the start function
+                            } //end of the counter if statement
+                            var createNewPlaylistDiv = $('<div>').addClass('create-new-playlist-div');
+                            var addNewDiv = $('<div>').addClass('new-playlist-div');
+                            var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
+                            var genreText = $('<h6>').addClass('genre-text').text("test" /*genreChoicesArray[genreNumToString]*/ );
+                            addNewDiv.append(genreText); createNewPlaylistDiv.append(genreText); createNewPlaylistDiv.append(addNewDiv); $('#playlist-div').append(createNewPlaylistDiv);
+                            ////////} /* If counter statement end */
+                            $('#playlist-div').append(createNewPlaylistDiv);
+                        } // Question 5 end function
 
-        var nameYourPlaylistDiv = $('<input>').attr({ "id": "playlist-name", "placeholder": "Name Your Playlist" });
-        namePlaylistValue = nameYourPlaylistDiv.val().trim();
-        console.log(namePlaylistValue);
-
-
-        questionFiveDiv.prepend(questionFiveText);
-
-        questionFiveButtonDiv.prepend(buttonRatingOne);
-        questionFiveButtonDiv.append(buttonRatingTwo);
-        questionFiveButtonDiv.append(buttonRatingThree);
-        questionFiveButtonDiv.append(buttonRatingFour);
-        questionFiveButtonDiv.append(nameYourPlaylistDiv)
-
-
-
-        questionFiveButtonDiv.append(buttonStart)
-        questionFiveDiv.append(questionFiveButtonDiv);
-
-        $('#render-div').append(questionFiveDiv);
-
-        if (counter === 0) {
-            $(document).on("click", ".question-five-button", function() {
-
-                if (userProfile.length < 10) {
-                    counterRa = 0;
-                    userProfile.push($(this).val());
-                    console.log(userProfile);
-                    movieRated();
-
-                }
-
-            })
-
-
-
-        $(document).on("click", ".start", function() {
-            // Only if at least one rating option has been selected
-            if (userProfile.length >= 7) {
-                console.log("start was clicked");
-                $('#render-div').hide();
-                $('#render-div').empty();
- 
-                videoRender();
-            }
-
-
-                    var config = {
-                        apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
-                        authDomain: "reel-films.firebaseapp.com",
-                        databaseURL: "https://reel-films.firebaseio.com",
-                        projectId: "reel-films",
-                        storageBucket: "reel-films.appspot.com",
-                        messagingSenderId: "226828627848"
-                    };
-
-
-                    firebase.initializeApp(config);
-
-                    var database = firebase.database();
-
-                    database.ref().push({
-                        Genre: userProfile[0],
-                        Popularity: userProfile[1],
-                        StartYear: userProfile[2],
-                        EndYear: userProfile[3],
-                        ReviewStart: userProfile[4],
-                        ReviewEnd: userProfile[5],
-                        Rating1: userProfile[6],
-                        //PlaylistName
-                        //OtherRatings
-                        //Email
-
-
-                    });
-
-                }
-
-            });
-
-        } //end of the counter if statement
-        var createNewPlaylistDiv = $('<div>').addClass('create-new-playlist-div');
-        var addNewDiv = $('<div>').addClass('new-playlist-div');
-        var genreNumToString = userProfile[0];
-        console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
-        var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').html(namePlaylistValue /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
-
-
-        addNewDiv.append(genreText);
-        createNewPlaylistDiv.append(genreText);
-        createNewPlaylistDiv.append(addNewDiv);
-        $('#playlist-div').append(createNewPlaylistDiv);
-
-
-
-        ////////} /* If counter statement end */
-
-        $('#playlist-div').append(createNewPlaylistDiv);
-
-    } // Question 5 end function
 
 
 
