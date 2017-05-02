@@ -26,6 +26,7 @@ $(document).ready(function() {
             var movieMainIndL = 0;
             var movieYearL = 0;
             var movieImbdRatL = 0;
+            var playlistName;
 
             // make number return by imdb votes an movieMainInd array
             var arr;
@@ -112,10 +113,12 @@ $(document).ready(function() {
             $('.genre').on('click', function() {
                 // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
                 if (counter === 0) {
+                    playlistName = $(this).text();
                     userProfile.unshift($(this).val());
                     findTitle();
                     console.log(userProfile);
                     $('#hide-display').css('display', "block");
+
                     $('.placeholderSidebarLeft').css("display", "none")
                     $('.placeholderSidebarRight').css("display", "none")
                     questionStartFromSecond();
@@ -173,10 +176,11 @@ $(document).ready(function() {
                 var questionThreeDiv = $('<div>').addClass('question-three-div questions-here');
                 var questionThreeButtonDiv = $('<div>').addClass('question-three-button-div');
                 var questionThreeText = $('<p>').addClass('question-three-html').text("Pick the year range") /*.css('display',block)*/ ;
-                var buttonRangeOne = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1950').attr("value", "1950");
-                var buttonRangeTwo = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1970').attr("value", "1970");
-                var buttonRangeThree = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1990').attr("value", "1990");
-                var buttonRangeFour = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('2017').attr("value", "2017");
+                var buttonRangeOne = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1970').attr("value", "1970");
+                var buttonRangeTwo = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('1990').attr("value", "1990");
+                var buttonRangeThree = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('2000').attr("value", "2000");
+                var buttonRangeFour = $('<button>').addClass('question-three-button question-buttons btn btn-default btn-block').text('Current').attr("value", "2017");
+
 
                 // Combine content and render to page
                 questionThreeButtonDiv.prepend(buttonRangeOne);
@@ -298,7 +302,7 @@ $(document).ready(function() {
 
                 // QUESTION 3 IS FILTER BY YEAR RANGE
                 // Create Content
-                var questionFiveDiv = $('<div>').addClass('question-five-div questions-here');
+                var questionFiveDiv = $('<form>').addClass('question-five-div questions-here');
                 var questionFiveButtonDiv = $('<div>').addClass('question-five-button-div');
                 var questionFiveText = $('<p>').addClass('question-five-html').text("Select Movie Association Ratings:") /*.css('display',block)*/ ;
                 var buttonRatingOne = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('G').attr("value", 'G');
@@ -353,6 +357,8 @@ $(document).ready(function() {
                                     $('#render-div').hide();
                                     $('#render-div').empty();
 
+
+
                                     videoRender();
                                 }
                                 var config = {
@@ -384,16 +390,21 @@ $(document).ready(function() {
                                     }); // end of the database push 
                                 }); // end of the start function
                             } //end of the counter if statement
+
+                            
+                            // CREATE NEW PLAYLIST DIV (THIS CREATES )
+
                             var createNewPlaylistDiv = $('<div>').addClass('create-new-playlist-div');
                             var addNewDiv = $('<div>').addClass('new-playlist-div');
                             var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
                             
-                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').html(namePlaylistValue /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
+                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id',"id").text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
 
                             addNewDiv.append(genreText); 
                             createNewPlaylistDiv.append(genreText); 
                             createNewPlaylistDiv.append(addNewDiv); 
                             $('#playlist-div').append(createNewPlaylistDiv);
+                            
 
 
 
@@ -581,7 +592,6 @@ $(document).ready(function() {
 
                         /// MORE JOE CODE -- NEED TO EMPTY MOVIE INFO DIVS EACH TIME ///
                         $('.placeholderSidebarRight').empty();
-                        $('.placeholderSidebarLeft').empty();
 
                         if (counter === 0) {
                             var createDiv = $('<button>').addClass('createButton btn btn-default btn-block').text('Create New Playlist').css('display', "block");
@@ -789,6 +799,7 @@ $(document).ready(function() {
                         if (counter === 0) {
 
                             $(document).on("click", ".genre-buttons-question-one", function() {
+                                playlistName = $(this).text();
                                 // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
                                 userProfile.unshift(parseInt($(this).val()));
                                 console.log("userProfile array after button click, before questionStartFromSecond(): " + userProfile);
