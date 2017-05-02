@@ -3,10 +3,17 @@
 #F4EADE off white
 #ED8C72 orange*/
 
+html {
+    height: 100%;
+}
+
 body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
     color: #F4EADE;
+    min-height: 100%;
+/*    display: flex;
+    flex-direction: column;*/
 }
 
 #hide-display {
@@ -53,6 +60,7 @@ body {
     background-color: #2988BC !important;
     color: #ffffff !important;
     padding: 100px 25px !important;
+    margin-bottom: 0px !important;
     /*margin-bottom: 150px !important;*/
 }
 
@@ -91,13 +99,16 @@ body {
 
 .placeholderSidebarLeft {
     background-color: #2988BC;
-    height: 400px;
+    /*    height: auto;
+*/
+    min-height: 445px;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .35);
     display: inline-block;
     padding: 10px;
     margin: 10px;
+    margin-top: 30%;
     /* Font styles */
     color: white;
     font-weight: bold;
@@ -129,12 +140,14 @@ body {
 
 .placeholderSidebarRight {
     background-color: #2988BC;
+    min-height: 445px;
     border: 1px solid black;
     border-radius: 5px;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .35);
     display: inline-block;
     padding: 10px;
     margin: 10px;
+    margin-top: 30%;
     /* Font styles */
     color: white;
     font-weight: bold;
@@ -152,8 +165,8 @@ body {
 
 .questions-here {
     background-color: #2988BC;
-    height: 300px;
-    width: 600px;
+    height: auto;
+    width: auto;
     border: 1px solid black;
     margin: auto;
     box-shadow: 0 0 5px 2px rgba(0, 0, 0, .35);
@@ -242,8 +255,7 @@ footer {
     left: 0;
     z-index: 10;
     height: 15%;
-    /*    margin-top: -3em;
-*/
+    margin-top: auto;
 }
 
 footer p {
@@ -275,4 +287,34 @@ footer p {
 
 .col-sm-12 {
     background-color: #F4EADE;
+}
+
+.movie-info-container {
+    background-color: #2988BC;
+    color: white;
+    border: 1px solid black;
+    border-radius: 5px;
+    box-shadow: 0 0 5px 2px rgba(0, 0, 0, .35);
+    display: inline-block;
+    /*margin-top: 10%;*/
+    margin-bottom: 5%;
+    /* Font styles */
+    font-weight: bold;
+    text-decoration: none;
+    min-width: 100%;
+}
+
+.movie-title-text {
+    font-size: 25px;
+    color: white;
+}
+
+.movie-summary-text {
+    font-size: 18px;
+    color: white;
+}
+
+#render-div {
+    margin-bottom: 2.5%;
+    margin-top: 2.5%;
 }
