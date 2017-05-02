@@ -570,12 +570,15 @@ $(document).ready(function() {
 
                     function videoRender() {
 
+                        $('#render-div').hide(1000);
+                        $('#render-div').empty(1000);
                         $('#render-div').show(1000);
                         $('.placeholderSidebarLeft').css("display", "inline-block");
                         $('.placeholderSidebarRight').css("display", "inline-block");
 
                         /// MORE JOE CODE -- NEED TO EMPTY MOVIE INFO DIVS EACH TIME ///
                         $('.placeholderSidebarRight').empty();
+                        $('.placeholderSidebarLeft').empty();
 
                         if (counter === 0) {
                             var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
@@ -606,14 +609,18 @@ $(document).ready(function() {
                             var runTime = response.Runtime;
                             var releaseYear = response.Released;
                             var movieAssociationRating = response.Rated;
+                            // if(response.Ratings !== undefined){
                             var tomatoRating = response.Ratings[1].Value;
+                            // };
+                            // if(response.Ratings !== undefined){
                             var metaRating = response.Ratings[2].Value;
+                            // };
                             var poster = response.Poster;
 
                             // Appending items to movieInfoContainer (top container)
                             var movieTitleText = $('<p>').addClass('movie-title-text').text(movieTitle);
                             movieInfoContainer.prepend(movieTitleText);
-
+                            console.log(response);
                             var movieSummaryText = $('<p>').addClass('movie-summary-text').text(movieSummary);
                             movieInfoContainer.append(movieSummaryText);
 
@@ -635,14 +642,22 @@ $(document).ready(function() {
 
                             ratingsDiv.prepend(textRatings);
 
+                            // check rotten tomatoe rating exists
+                            // if(tomatoRating !== undefined){
                             var tomatoDiv = $('<div>').addClass('review-container').css('display', 'inline-block');
+
                             var tomatoText = $('<p>').addClass('tomato-text').text("Rotten Tomatoes: " + tomatoRating);
-
-                            var metaDiv = $('<div>').addClass('review-container').css('display', 'inline-block');
-                            var metaText = $('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
-
                             tomatoDiv.append(tomatoText);
+                             // };
+
+                             // check meta rating exists
+                             // if(metaRating !== undefined){
+                            var metaDiv = $('<div>').addClass('review-container').css('display', 'inline-block');
+
+                            var metaText = $('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
                             metaDiv.append(metaText);
+                            // }
+                            
 
                             ratingsDiv.append(tomatoDiv);
                             ratingsDiv.append(metaDiv);
@@ -669,6 +684,19 @@ $(document).ready(function() {
                         makeAjax(movieMpaaCounter);
 
                     }
+
+                     function previousVideo(){
+                        if(movieMpaaCounter !== 0){
+                            movieMpaaCounter--;
+                            videoRender();
+                        } 
+
+                    }; // end of previous video function
+
+                    function nextVideo(){
+                        movieMpaaCounter++;
+                        videoRender();
+                    }; // end of next video function
 
                     function makeAjax(i) {
                         var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=" + movieMpaa[i] + "&regionCode=US&safeSearch=moderate&type=video&videoCategoryId=30&key=AIzaSyADtMP3eVgiTcTPqx4W8qXgkAZtillp_UI";
@@ -771,5 +799,7 @@ $(document).ready(function() {
 
                     // This line will look for any playlists added and will change the playlist when clicked
                     $(document).on("click", ".createButton", createNewPlaylist);
+                    $(document).on("click",".left-arrow",previousVideo);
+                    $(document).on("click",".right-arrow",nextVideo);
 
                 });
