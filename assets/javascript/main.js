@@ -352,7 +352,6 @@ $(document).ready(function() {
 
 
                     $(document).on("click", ".start", function() {
-                        var id;
                                 // Only if at least one rating option has been selected
                                 if (userProfile.length >= 7) {
                                     console.log("start was clicked");
@@ -385,13 +384,11 @@ $(document).ready(function() {
                                     ReviewStart: userProfile[4],
                                     ReviewEnd: userProfile[5],
                                     Rating1: userProfile[6],
-                                    Rating2: userProfile[7] || "",
-                                    Rating3: userProfile[8] || "",
-                                    Rating4: userProfile[9] || "",
-                              
+                                    //PlaylistName
+                                    //OtherRatings
+                                    //Email
 
                                     }); // end of the database push 
-                                id = pushed.name() // gives us the key value
                                 }); // end of the start function
                             } //end of the counter if statement
 
@@ -402,7 +399,7 @@ $(document).ready(function() {
                             var addNewDiv = $('<div>').addClass('new-playlist-div');
                             var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
                             
-                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id', id).text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
+                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id',"id").text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
 
                             addNewDiv.append(genreText); 
                             createNewPlaylistDiv.append(genreText); 
@@ -627,12 +624,12 @@ $(document).ready(function() {
                             var runTime = response.Runtime;
                             var releaseYear = response.Released;
                             var movieAssociationRating = response.Rated;
-                  			if(response.Ratings[0]){
-                  			var sourceVal1 = response.Ratings[0].Source;
+                            if(response.Ratings[0]){
+                            var sourceVal1 = response.Ratings[0].Source;
                             var tomatoRating = response.Ratings[0].Value;
-                           	}
+                            }
                             if(response.Ratings[1]){
-                            var sourceVal2 = response.Ratings[1].Source;	
+                            var sourceVal2 = response.Ratings[1].Source;    
                             var metaRating = response.Ratings[1].Value;
                             };
                             var poster = response.Poster;
