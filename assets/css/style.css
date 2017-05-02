@@ -20,6 +20,10 @@ body {
     display: none;
 }
 
+.space{
+    min-height: 380px;
+}
+
 .navbar {
     font-family: Montserrat, sans-serif;
     margin-bottom: 0 !important;
