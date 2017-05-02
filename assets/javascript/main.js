@@ -38,10 +38,19 @@ $(document).ready(function() {
     // variable to compare whether indie was selected
     var indie = 200000;
 
+    // Counts through the Mpaa array to get titles of movies
+    var movieMpaaCounter = 0;
+    // holds the videoId to display youtube video
+    var videoIdMpaa;
+
+    // code for the youtube player
+    var tag = document.createElement('script');
+     var firstScriptTag = document.getElementsByTagName('script')[0];
+     var player;
 
 
     // Add smooth scrolling to all links in navbar + footer link
-    $(".navbar a, footer a[href='#myPage']").on('click', function(event) {
+    $(".navbar a, footer a[href=2'#myPage']").on('click', function(event) {
 
         // Make sure this.hash has a value before overriding default behavior
         if (this.hash !== "") {
@@ -84,23 +93,23 @@ $(document).ready(function() {
     /* GENRE (number) , INDIE (number) , DATE RANGE1(YEAR)(number) , DATERANGE2(YEAR)(number) , CALIBUR1(6.0)(number), CALIBUR2(9.0)(number), RATING(G)(string), RATING(PG)(string), RATING(R)(string) */
 
     //Youtube iFrame video player
-
-    // 2. This code loads the IFrame Player API code asynchronously.
-    var tag = document.createElement('script');
+    // old variables where youtube player was located. 
+        // 2. This code loads the IFrame Player API code asynchronously.
+    
 
     tag.src = "https://www.youtube.com/iframe_api";
-    var firstScriptTag = document.getElementsByTagName('script')[0];
+   
     firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
     // 3. This function creates an <iframe> (and YouTube player)
     //    after the API code downloads.
-    var player;
+   
 
     function onYouTubeIframeAPIReady() {
         player = new YT.Player('player', {
             height: '390',
             width: '640',
-            videoId: 'M7lc1UVf-VE',
+            videoId: videoIdMpaa,
             events: {
                 'onReady': onPlayerReady,
                 'onStateChange': onPlayerStateChange
@@ -359,6 +368,7 @@ $(document).ready(function() {
                 console.log("start was clicked");
                 $('#render-div').hide();
                 $('#render-div').empty();
+ 
                 videoRender();
             }
 
@@ -384,9 +394,11 @@ $(document).ready(function() {
 
     } // Question 5 end function
 
+
+
     // function for producing titles
     function findTitle() {
-        console.log("START OF MOVIE TITLE");
+        // console.log("START OF MOVIE TITLE");
         // produce Titles 
         if (counterP < 10) {
             queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=a4a27185a8d4d5eda2d9b10434e6cad8&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=" + userProfile[0] + "&page=" + counterP;
@@ -404,17 +416,17 @@ $(document).ready(function() {
                 counterP++;
                 // total title of movies
                 movieTitleL = movieTitleGen.length;
-                console.log(movieTitleGen);
-                console.log(movieTitleL);
+                // console.log(movieTitleGen);
+                // console.log(movieTitleL);
                 findTitle();
 
             });
         }
-        console.log("End of the MOVIE TITLE");
+        // console.log("End of the MOVIE TITLE");
     } // end of finds the title function
 
     function mainIndie() {
-        console.log("Start of the MainIndie");
+        // console.log("Start of the MainIndie");
         if (counterT < movieTitleL) {
             // Filter movie for mainstream and indie
             var queryURLS = "http://www.omdbapi.com/?t=" + movieTitleGen[counterT] + "&y=&plot=short&r=json";
@@ -426,12 +438,12 @@ $(document).ready(function() {
                     if (response.Response !== "False") {
                         arr = response.imdbVotes;
                         // console.log(response);
-                        console.log(movieTitleGen[counterT]);
+                        // console.log(movieTitleGen[counterT]);
                         num = arr.split(',');
                         arr = num.join("");
                         numImbdVotes = parseInt(arr);
-                        console.log(numImbdVotes);
-                        console.log(userProfile[1]);
+                        // console.log(numImbdVotes);
+                        // console.log(userProfile[1]);
                         if (indie > userProfile[1]) {
                             // adds indie films
                             add(numImbdVotes);
@@ -442,7 +454,7 @@ $(document).ready(function() {
                     } // end of if statement false
                     counterT++;
                     movieMainIndL = movieMainInd.length;
-                    console.log(movieMainIndL);
+                    // console.log(movieMainIndL);
                     mainIndie();
 
                 })
@@ -451,11 +463,11 @@ $(document).ready(function() {
                 // })
                 // end of else if statement based on mainstream/indie
         } // end of the if counter < movie title statement
-        console.log("End of the MainIndie");
+        // console.log("End of the MainIndie");
     } // end of main indie function
     function yearInterval() {
         if (counterY < movieMainIndL) {
-            console.log("start of year interval");
+            // console.log("start of year interval");
             // filter movie based on year interval
             var queryURLS = "http://www.omdbapi.com/?t=" + movieMainInd[counterY] + "&y=&plot=short&r=json";
             $.ajax({
@@ -477,12 +489,12 @@ $(document).ready(function() {
             });
             // end of else if statement for filter by movie year interval
         }
-        console.log("End of year Interval");
+        // console.log("End of year Interval");
     };
 
     function movieRating() {
         if (counterR < movieYearL) {
-            console.log("start of Movie Rating");
+            // console.log("start of Movie Rating");
             // filer movie based on imdb rating
             var queryURLS = "http://www.omdbapi.com/?t=" + movieYear[counterR] + "&y=&plot=short&r=json";
             $.ajax({
@@ -506,13 +518,13 @@ $(document).ready(function() {
             });
             // end of else if statement for filter imdb rating
         } // if movie statement
-        console.log("End of movie rating");
+        // console.log("End of movie rating");
     } // end of function movie rating
 
     function movieRated() {
         if (counterRa < movieImbdRatL) {
             // filter movie based on MPAA ratings
-            console.log("start of movie rated");
+            // console.log("start of movie rated");
             var queryURLS = "http://www.omdbapi.com/?t=" + movieImdbRat[counterRa] + "&y=&plot=short&r=json";
             $.ajax({
                 url: queryURLS,
@@ -529,22 +541,22 @@ $(document).ready(function() {
 
             });
         } // end of else if statement for MPAA ratings
-        console.log("End of movie Rating");
+        // console.log("End of movie Rating");
     } // end of the movie rated function
 
 
 
     // pushes indie films
     function add(numImbdVotes) {
-        if (numImbdVotes < 20000) {
+        if (numImbdVotes < 50000) {
             movieMainInd.push(movieTitleGen[counterT]);
-            console.log(movieMainInd);
+            // console.log(movieMainInd);
         }
     } // end of add function pushes indie films
     function add2(numImbdVotes) {
-        if (numImbdVotes > 20000) {
+        if (numImbdVotes > 50000) {
             movieMainInd.push(movieTitleGen[counterT]);
-            console.log(movieMainInd);
+            // console.log(movieMainInd);
         }
     } // end of add2 function adds only mainstream films   
 
@@ -571,7 +583,7 @@ $(document).ready(function() {
         var leftArrow = $('<img>').addClass('left-arrow').attr('src', '../images/leftarrow.png').css('display', "inline-block");
         var rightArrow = $('<img>').addClass('right-arrow').attr('src', '../images/rightarrow.png').css('display', "inline-block");
         var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows').css('display', "inline-block");
-
+   
 
                 //////////////////////////////////////////////////////////////////////////////////////
 
@@ -649,10 +661,37 @@ $(document).ready(function() {
         $('#render-div').append(rightArrow);
 
 
-        onYouTubeIframeAPIReady();
+        makeAjax(movieMpaaCounter);
+
+        // $(".right-arrow").click(function(){
+        //     makeAjax(counterArray++);
+        // });
+        // $(".left-arrow").click(function(){
+        //     if(counterArray !== 0){
+        //     makeAjax(counterArray--);
+        //     }
+        // });
+
 
 
     }
+
+    function makeAjax(i){
+        var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&maxResults=10&order=relevance&q=" + movieMpaa[i] +  "&regionCode=US&safeSearch=moderate&type=video&videoCategoryId=30&key=AIzaSyADtMP3eVgiTcTPqx4W8qXgkAZtillp_UI";
+
+        $.ajax({
+          url: queryURL,
+          method: "GET"
+        })
+        // After data comes back from the request
+        .done(function(response) {
+            console.log(response);
+            videoIdMpaa = response.items[0].id.videoId;
+            onYouTubeIframeAPIReady();
+            // console.log(videoIdMpaa);
+            // console.log(typeof videoIdMpaa);
+        });
+    };
 
 
     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
