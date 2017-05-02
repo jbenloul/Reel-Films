@@ -4,6 +4,9 @@ body {
     color: #F4EADE;
 }
 
+.background-image{
+    width: 100%;
+}
 
 #hide-display{
         display:none;
