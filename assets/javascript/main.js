@@ -113,6 +113,7 @@ $(document).ready(function() {
             $('.genre').on('click', function() {
                 // checks to make sure userProfile is empty then adds the value of the drop down genre selected to the empty userProfile array
                 if (counter === 0) {
+                    $('.button-group').css('display','none');
                     playlistName = $(this).text();
                     userProfile.unshift($(this).val());
                     findTitle();
