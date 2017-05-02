@@ -1,3 +1,8 @@
+/*#2988BC light blue
+#2F496E dark blue
+#F4EADE off white
+#ED8C72 orange*/
+
 body {
     font: 400 15px Lato, sans-serif;
     line-height: 1.8;
@@ -229,9 +234,13 @@ footer .glyphicon {
 footer {
     clear: both;
     position: relative;
+    right: 0;
+    bottom: 0;
+    left: 0;
     z-index: 10;
-    height: 3em;
-    margin-top: -3em;
+    height: 15%;
+    /*    margin-top: -3em;
+*/
 }
 
 footer p {
@@ -251,4 +260,16 @@ footer p {
 .right-arrow {
     display: inline;
     padding-bottom: 40%;
+}
+
+#jump-to-here {
+    background-color: #F4EADE;
+}
+
+#myPage {
+    background-color: #F4EADE;
+}
+
+.col-sm-12 {
+    background-color: #F4EADE;
 }
