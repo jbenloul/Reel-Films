@@ -4,9 +4,8 @@ body {
     color: #F4EADE;
 }
 
-
-#hide-display{
-        display:none;
+#hide-display {
+    display: none;
 }
 
 .navbar {
@@ -238,4 +237,18 @@ footer {
 footer p {
     background-color: #FF8640 !important;
     color: #ffffff !important;
+}
+
+.movie-player-container {
+    display: inline;
+}
+
+.left-arrow {
+    display: inline;
+    padding-bottom: 40%;
+}
+
+.right-arrow {
+    display: inline;
+    padding-bottom: 40%;
 }
