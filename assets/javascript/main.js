@@ -539,13 +539,15 @@ $(document).ready(function() {
 
 
     function videoRender() {
-
+        $('#render-div').hide(1000);
+        $('#render-div').empty(1000);
         $('#render-div').show(1000);
         $('.placeholderSidebarLeft').css("display", "inline-block");
         $('.placeholderSidebarRight').css("display", "inline-block");
 
         /// MORE JOE CODE -- NEED TO EMPTY MOVIE INFO DIVS EACH TIME ///
         $('.placeholderSidebarRight').empty();
+        $('.placeholderSidebarLeft').empty();
 
         if (counter === 0) {
             var createDiv = $('<div>').addClass('createButton').text("Create a new playlist")
@@ -576,7 +578,7 @@ $(document).ready(function() {
             var runTime = response.Runtime;
             var releaseYear = response.Released;
             var movieAssociationRating = response.Rated;
-            var tomatoRating = response.Ratings[1].Value;
+            var tomatoRating = response.Ratings[0].Value;
             var metaRating = response.Ratings[2].Value;
             var poster = response.Poster;
 
@@ -606,7 +608,7 @@ $(document).ready(function() {
             ratingsDiv.prepend(textRatings);
 
             var tomatoDiv =$('<div>').addClass('review-container').css('display','inline-block');
-            var tomatoText =$('<p>').addClass('tomato-text').text("Rotten Tomatoes: " + tomatoRating);
+            var tomatoText =$('<p>').addClass('tomato-text').text("IMDB Rating: " + tomatoRating);
 
             var metaDiv =$('<div>').addClass('review-container').css('display','inline-block');
             var metaText =$('<p>').addClass('meta-text').text("Meta Critic: " + metaRating);
@@ -650,6 +652,19 @@ $(document).ready(function() {
 
 
 
+    }
+
+    function previousVideo(){
+        if(movieMpaaCounter !== 0){
+            movieMpaaCounter--;
+            videoRender();
+        }
+
+    }
+
+    function nextVideo(){
+        movieMpaaCounter++;
+        videoRender();
     }
 
     function makeAjax(i){
@@ -753,6 +768,8 @@ $(document).ready(function() {
 
     // This line will look for any playlists added and will change the playlist when clicked
     $(document).on("click", ".createButton", createNewPlaylist);
+    $(document).on("click", ".left-arrow", previousVideo);
+    $(document).on("click", ".right-arrow", nextVideo);
        
 
 
