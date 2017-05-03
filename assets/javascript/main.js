@@ -44,6 +44,17 @@ $(document).ready(function() {
             // holds the videoId to display youtube video
             var videoIdMpaa;
 
+            var config = {
+            apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
+            authDomain: "reel-films.firebaseapp.com",
+            databaseURL: "https://reel-films.firebaseio.com",
+            projectId: "reel-films",
+            storageBucket: "reel-films.appspot.com",
+            messagingSenderId: "226828627848"
+                                };
+
+            firebase.initializeApp(config);
+
             // code for the youtube player
             var tag = document.createElement('script');
             var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -362,33 +373,21 @@ $(document).ready(function() {
 
                                     videoRender();
                                 }
-                                var config = {
-                                    apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
-                                    authDomain: "reel-films.firebaseapp.com",
-                                    databaseURL: "https://reel-films.firebaseio.com",
-                                    projectId: "reel-films",
-                                    storageBucket: "reel-films.appspot.com",
-                                    messagingSenderId: "226828627848"
-                                };
+                                    var database = firebase.database();
 
-
-                                firebase.initializeApp(config);
-
-                                var database = firebase.database();
-
-                                database.ref().push({
-                                    Genre: userProfile[0],
-                                    Popularity: userProfile[1],
-                                    StartYear: userProfile[2],
-                                    EndYear: userProfile[3],
-                                    ReviewStart: userProfile[4],
-                                    ReviewEnd: userProfile[5],
-                                    Rating1: userProfile[6],
-                                    //PlaylistName
-                                    //OtherRatings
-                                    //Email
-
+                                    var pushed = database.ref().push({
+                                        PlaylistArray: movieMpaa
                                     }); // end of the database push 
+                                    console.log(pushed);
+                                    id = pushed.key;
+                                    console.log(id);
+                                 // gives us the key value
+                                    database.ref().on("child_added", function(snapshot) {
+
+                                    // Change the HTML to reflect
+                                    console.log(snapshot.val());
+        
+                                     }); // end of snapshot
                                 }); // end of the start function
                             } //end of the counter if statement
 
@@ -420,7 +419,7 @@ $(document).ready(function() {
                     function findTitle() {
                         // console.log("START OF MOVIE TITLE");
                         // produce Titles 
-                        if (counterP < 25) {
+                        if (counterP < 18) {
                             queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=a4a27185a8d4d5eda2d9b10434e6cad8&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=" + userProfile[0] + "&page=" + counterP;
                             $.ajax({
                                 url: queryURL,
