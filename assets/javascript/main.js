@@ -606,9 +606,9 @@ $(document).ready(function() {
 
                         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
                         var moviePlayerContainer = $('<div>').addClass('movie-player-container ');
-                        var moviePlayerDiv = $('<div id="player"></div>').addClass('movie-player-div');
-                        var leftArrow = $('<img>').addClass('left-arrow').attr('src', 'assets/images/leftarrow.png');
-                        var rightArrow = $('<img>').addClass('right-arrow').attr('src', 'assets/images/rightarrow.png');
+                        var moviePlayerDiv = $('<div id="player"></div>').addClass('movie-player-div col-sm-8');
+                        var leftArrow = $('<img>').addClass('left-arrow col-sm-2').attr('src', 'assets/images/leftarrow.png');
+                        var rightArrow = $('<img>').addClass('right-arrow col-sm-2').attr('src', 'assets/images/rightarrow.png');
                         var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows');
 
 
@@ -769,7 +769,7 @@ $(document).ready(function() {
 
                         var genreChoicesArray = ["Action Packed", "Action", "Adventure", "War", "Western", "Light-Hearted", "Animation", "Comedy", "Family", "Musical", "Romance", "Adrenaline Rush", "Crime", "Horror", "Mystery", "Thriller", "Fantastical", "Animation", "Fantasy", "Foreign", "Sci-Fi", "Heavy-Hitters", "Documentary", "Drama", "History"];
                         var genreNumberArray = ["Action Packed", 28, 12, 10752, 37, "Light-Hearted", 16, 35, 10751, 10402, 10749, "Adrenaline Rush", 80, 27, 9648, 53, "Fantastical", 16, 14, 10769, 878, "Heavy-Hitters", 99, 18, 36];
-                        var questionOneDiv = $('<div>').addClass('question-one-div');
+                        var questionOneDiv = $('<div>').addClass('question-one-div questions-here');
 
                         var questionOneText = $('<p>').addClass('question-one-text').text('Choose a genre');
                         var questionOneButtonContainer = $('<div>').addClass('question-one-button-div');
@@ -784,12 +784,12 @@ $(document).ready(function() {
                                     questionOneButtonContainer.append(space);
                                 }
 
-                                var title = $('<button>').addClass('title').text(genreChoicesArray[i]);
+                                var title = $('<h4>').addClass('title').text(genreChoicesArray[i] + ": ").css("display", "inline-block");
                                 questionOneButtonContainer.append(title);
 
                             } else {
 
-                                var button = $('<button>').addClass('genre-buttons-question-one').text(genreChoicesArray[i]).attr('value', genreNumberArray[i]);
+                                var button = $('<button>').addClass('genre-buttons-question-one btn btn-default').text(genreChoicesArray[i]).attr('value', genreNumberArray[i]);
                                 questionOneButtonContainer.append(button);
 
                             }
