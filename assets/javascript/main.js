@@ -254,54 +254,7 @@ $(document).ready(function() {
                 questionFourDiv.append(questionFourButtonDiv);
 
                 $('#render-div').append(questionFourDiv);
-                if (counter === 0) {
-                    $(document).on("click", ".question-four-button", function() {
-
-                        if ($(this).val() == "any") {
-                            userProfile.push(1);
-                            userProfile.push(10);
-                            movieRating();
-                            $('#render-div').hide();
-                            $('#render-div').empty();
-                            console.log(userProfile);
-                            questionFive();
-                        }
-                        if ($(this).val() == "bad") {
-                            userProfile.push(1);
-                            userProfile.push(7);
-                            movieRating();
-                            $('#render-div').hide();
-                            $('#render-div').empty();
-                            console.log(userProfile);
-                            questionFive();
-                        }
-                        if ($(this).val() == "crowd") {
-                            userProfile.push(3);
-                            userProfile.push(9);
-                            movieRating();
-                            $('#render-div').hide();
-                            $('#render-div').empty();
-                            console.log(userProfile);
-                            questionFive();
-                        }
-                        if ($(this).val() == "critic") {
-                            userProfile.push(7);
-                            userProfile.push(10);
-                            movieRating();
-                            $('#render-div').hide();
-                            $('#render-div').empty();
-                            console.log(userProfile);
-                            questionFive();
-                        }
-
-                        /*
-                        userProfile.push($(this).val());
-                        console.log(userProfile);
-                        $('#render-div').hide();
-                        $('#render-div').empty();
-                        questionFive();*/
-                    })
-                } // end of counter if statement
+                
             }
 
             function questionFive() {
@@ -309,7 +262,7 @@ $(document).ready(function() {
 
                 // QUESTION 3 IS FILTER BY YEAR RANGE
                 // Create Content
-                var questionFiveDiv = $('<form>').addClass('question-five-div questions-here');
+                var questionFiveDiv = $('<div>').addClass('question-five-div questions-here');
                 var questionFiveButtonDiv = $('<div>').addClass('question-five-button-div');
                 var questionFiveText = $('<p>').addClass('question-five-html').text("Select Movie Association Ratings:") /*.css('display',block)*/ ;
                 var buttonRatingOne = $('<button>').addClass('question-five-button question-buttons btn btn-default btn-block').text('G').attr("value", 'G');
@@ -815,5 +768,51 @@ $(document).ready(function() {
                     $(document).on("click", ".createButton", createNewPlaylist);
                     $(document).on("click",".left-arrow",previousVideo);
                     $(document).on("click",".right-arrow",nextVideo);
+                    $(document).on("click", ".question-four-button", function() {
+
+                        if ($(this).val() == "any") {
+                            userProfile.push(1);
+                            userProfile.push(10);
+                            movieRating();
+                            $('#render-div').hide();
+                            $('#render-div').empty();
+                            console.log(userProfile);
+                            questionFive();
+                        }
+                        if ($(this).val() == "bad") {
+                            userProfile.push(1);
+                            userProfile.push(7);
+                            movieRating();
+                            $('#render-div').hide();
+                            $('#render-div').empty();
+                            console.log(userProfile);
+                            questionFive();
+                        }
+                        if ($(this).val() == "crowd") {
+                            userProfile.push(3);
+                            userProfile.push(9);
+                            movieRating();
+                            $('#render-div').hide();
+                            $('#render-div').empty();
+                            console.log(userProfile);
+                            questionFive();
+                        }
+                        if ($(this).val() == "critic") {
+                            userProfile.push(7);
+                            userProfile.push(10);
+                            movieRating();
+                            $('#render-div').hide();
+                            $('#render-div').empty();
+                            console.log(userProfile);
+                            questionFive();
+                        }
+
+                        /*
+                        userProfile.push($(this).val());
+                        console.log(userProfile);
+                        $('#render-div').hide();
+                        $('#render-div').empty();
+                        questionFive();*/
+                    })
 
                 });
