@@ -567,7 +567,7 @@ $(document).ready(function() {
 
                     // pushes indie films
                     function add(numImbdVotes) {
-                        if (numImbdVotes > 50000 && numImbdVotes < 100000) {
+                        if (numImbdVotes < 100000) {
                             movieMainInd.push(movieTitleGen[counterT]);
                             // console.log(movieMainInd);
                         }
