@@ -63,7 +63,6 @@ $(document).ready(function() {
 // This is to make the buttons stick when clicked
     $(document).on("click", ".question-buttons", function() {
         $(this).focus().addClass("buttonFocused");
-              console.log("WORKED!")
             // if ($(this).hasClass('buttonFocused')) {
             //     $(this).removeClass('buttonFocused')
             // } else {
@@ -164,17 +163,13 @@ $(document).ready(function() {
 
                 if (counter === 0) {
                     $(document).on("click", ".question-two-button", function() {
-                        console.log("userProfile array after button click, before any pushes inside questionStartFromSecond(): " + userProfile);
+
                         // Why is this pushing twice (the entire function is running twice)
                         userProfile.push(parseInt($(this).val()));
 
-                        console.log("userProfile array after push inside questionStartFromSecond(): " + userProfile);
                         mainIndie();
                         $('#render-div').hide();
                         $('#render-div').empty();
-                        console.log("userProfile array after button click, deeper still questionStartFromSecond(): " + userProfile);
-
-
 
                         questionThree();
                     })
@@ -555,7 +550,7 @@ $(document).ready(function() {
                                     movieMpaa.push(movieImdbRat[counterRa]);
                                 }
                                 counterRa++;
-                                console.log(movieMpaa);
+
                                 movieRated();
 
                             });
