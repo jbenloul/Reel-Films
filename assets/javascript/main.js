@@ -591,6 +591,7 @@ $(document).ready(function() {
                         $('#render-div').hide(1000);
                         $('#render-div').empty(1000);
                         $('#render-div').show(1000);
+                        $('.space').css("background-color", "gray");
                         $('.placeholderSidebarLeft').css("display", "inline-block");
                         $('.placeholderSidebarRight').css("display", "inline-block");
 
@@ -739,6 +740,7 @@ $(document).ready(function() {
 
                     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
                     function createNewPlaylist() {
+
                         // Arrays of movie filtered titles
                         userProfile = [];
                         movieTitleGen = [];
@@ -758,7 +760,7 @@ $(document).ready(function() {
                         movieYearL = 0;
                         movieImbdRatL = 0;
                         console.log("test")
-
+                        $('.space').css("background-color", "#F4EADE");
                         $('#render-div').hide();
                         $('#render-div').empty();
                         $('.placeholderSidebarLeft').hide();
