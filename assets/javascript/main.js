@@ -334,6 +334,13 @@ $(document).ready(function() {
 
                                     // Change the HTML to reflect
                                     console.log(snapshot.val());
+
+
+                                    var splitArray = arr.split(':');
+                                    var index = newArray.indexOf(name);
+                                            newArray.splice(name, 1)
+                                    var splicedArray = newArray.join("");
+                                    console.log(splicedArray)
         
                                      }); // end of snapshot
                                 }); // end of the start function
@@ -551,8 +558,8 @@ $(document).ready(function() {
                         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
                         var moviePlayerContainer = $('<div>').addClass('movie-player-container ');
                         var moviePlayerDiv = $('<div id="player"></div>').addClass('movie-player-div col-sm-8');
-                        var leftArrow = $('<img>').addClass('left-arrow col-sm-2').attr('src', 'assets/images/leftarrow.png');
-                        var rightArrow = $('<img>').addClass('right-arrow col-sm-2').attr('src', 'assets/images/rightarrow.png');
+                        var leftArrow = $('<img>').addClass('left-arrow col-sm-2 arrows').attr('src', 'assets/images/leftarrow.png');
+                        var rightArrow = $('<img>').addClass('right-arrow col-sm-2 arrows').attr('src', 'assets/images/rightarrow.png');
                         var textBetweenArrows = $('<p>').text("Previous / Next Trailer").addClass('text-between-arrows');
 
 
