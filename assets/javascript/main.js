@@ -348,6 +348,8 @@ $(document).ready(function() {
 
                 $('#render-div').append(questionFiveDiv);
 
+
+
                 if (counter === 0) {
                     $(document).on("click", ".question-five-button", function() {
 
@@ -368,7 +370,6 @@ $(document).ready(function() {
                                     console.log("start was clicked");
                                     $('#render-div').hide();
                                     $('#render-div').empty();
-
 
 
                                     videoRender();
