@@ -273,7 +273,7 @@ $(document).ready(function() {
                         }
                         if ($(this).val() == "bad") {
                             userProfile.push(1);
-                            userProfile.push(4);
+                            userProfile.push(7);
                             movieRating();
                             $('#render-div').hide();
                             $('#render-div').empty();
@@ -281,8 +281,8 @@ $(document).ready(function() {
                             questionFive();
                         }
                         if ($(this).val() == "crowd") {
-                            userProfile.push(4);
-                            userProfile.push(8);
+                            userProfile.push(3);
+                            userProfile.push(9);
                             movieRating();
                             $('#render-div').hide();
                             $('#render-div').empty();
@@ -290,7 +290,7 @@ $(document).ready(function() {
                             questionFive();
                         }
                         if ($(this).val() == "critic") {
-                            userProfile.push(8);
+                            userProfile.push(7);
                             userProfile.push(10);
                             movieRating();
                             $('#render-div').hide();
@@ -524,7 +524,7 @@ $(document).ready(function() {
                                     ratings = parseFloat(response.imdbRating);
 
                                     // add movie within ratings
-                                    if (ratings > userProfile[4] && ratings < userProfile[5]) {
+                                    if (ratings >= userProfile[4] && ratings <= userProfile[5]) {
                                         movieImdbRat.push(movieYear[counterR]);
                                         console.log(movieImdbRat);
                                     }
