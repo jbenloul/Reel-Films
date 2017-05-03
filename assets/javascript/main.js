@@ -394,7 +394,7 @@ $(document).ready(function() {
 
                             
                             // CREATE NEW PLAYLIST DIV (THIS CREATES )
-
+                            
                             var createNewPlaylistDiv = $('<div>').addClass('create-new-playlist-div');
                             var addNewDiv = $('<div>').addClass('new-playlist-div');
                             var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
@@ -405,7 +405,6 @@ $(document).ready(function() {
                             createNewPlaylistDiv.append(genreText); 
                             createNewPlaylistDiv.append(addNewDiv); 
                             $('#playlist-div').append(createNewPlaylistDiv);
-                            
 
 
 
@@ -598,7 +597,7 @@ $(document).ready(function() {
                             var createDiv = $('<button>').addClass('createButton btn btn-default btn-block').text('Create New Playlist').css('display', "block");
                             $('#playlist-div').prepend($('<hr>'));
                             $('#playlist-div').prepend(createDiv);
-
+                            counter++;
                         }
 
                         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
@@ -797,7 +796,7 @@ $(document).ready(function() {
                         $('#render-div').append(questionOneDiv);
 
 
-                        if (counter === 0) {
+                        /////////////////if (counter === 0) {
 
                             $(document).on("click", ".genre-buttons-question-one", function() {
                                 playlistName = $(this).text();
@@ -809,7 +808,7 @@ $(document).ready(function() {
 
 
                             });
-                        } //If Statement with counter
+                        ////////////////////////////////////} //If Statement with counter
                         counter = 1;
                     } // End Create Playlist Function
 
