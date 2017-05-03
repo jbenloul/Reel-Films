@@ -149,8 +149,8 @@ $(document).ready(function() {
 
                 var questionTwoButtonDiv = $('<div>').addClass('question-two-button-div');
                 var questionTwoText = $('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?") /*.css('display',block)*/ ;
-                var questionTwoButtonIndie = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Indie Movie").attr("value", "199999");
-                var questionTwoButtonMainstream = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Mainstream Movie").attr("value", "200001");
+                var questionTwoButtonIndie = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Sleeper Hits").attr("value", "199999");
+                var questionTwoButtonMainstream = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Blockbusters").attr("value", "200001");
 
                 questionTwoButtonDiv.append(questionTwoButtonIndie);
                 questionTwoButtonDiv.append(questionTwoButtonMainstream);
@@ -567,7 +567,7 @@ $(document).ready(function() {
 
                     // pushes indie films
                     function add(numImbdVotes) {
-                        if (numImbdVotes > 50000 && numImbdVotes < 100000) {
+                        if (numImbdVotes < 125000) {
                             movieMainInd.push(movieTitleGen[counterT]);
                             // console.log(movieMainInd);
                         }
