@@ -448,7 +448,7 @@ $(document).ready(function() {
                         // console.log("Start of the MainIndie");
                         if (counterT < movieTitleL) {
                             // Filter movie for mainstream and indie
-                            var queryURLS = "http://www.omdbapi.com/?t=" + movieTitleGen[counterT] + "&y=&plot=short&r=json";
+                            var queryURLS = "https://www.omdbapi.com/?t=" + movieTitleGen[counterT] + "&y=&plot=short&r=json";
                             $.ajax({
                                     url: queryURLS,
                                     method: "GET"
@@ -488,7 +488,7 @@ $(document).ready(function() {
                         if (counterY < movieMainIndL) {
                             // console.log("start of year interval");
                             // filter movie based on year interval
-                            var queryURLS = "http://www.omdbapi.com/?t=" + movieMainInd[counterY] + "&y=&plot=short&r=json";
+                            var queryURLS = "https://www.omdbapi.com/?t=" + movieMainInd[counterY] + "&y=&plot=short&r=json";
                             $.ajax({
                                 url: queryURLS,
                                 method: "GET"
@@ -515,7 +515,7 @@ $(document).ready(function() {
                         if (counterR < movieYearL) {
                             // console.log("start of Movie Rating");
                             // filer movie based on imdb rating
-                            var queryURLS = "http://www.omdbapi.com/?t=" + movieYear[counterR] + "&y=&plot=short&r=json";
+                            var queryURLS = "https://www.omdbapi.com/?t=" + movieYear[counterR] + "&y=&plot=short&r=json";
                             $.ajax({
                                 url: queryURLS,
                                 method: "GET"
@@ -544,7 +544,7 @@ $(document).ready(function() {
                         if (counterRa < movieImbdRatL) {
                             // filter movie based on MPAA ratings
                             // console.log("start of movie rated");
-                            var queryURLS = "http://www.omdbapi.com/?t=" + movieImdbRat[counterRa] + "&y=&plot=short&r=json";
+                            var queryURLS = "https://www.omdbapi.com/?t=" + movieImdbRat[counterRa] + "&y=&plot=short&r=json";
                             $.ajax({
                                 url: queryURLS,
                                 method: "GET"
@@ -611,7 +611,7 @@ $(document).ready(function() {
                         //////////////////////////////////////////////////////////////////////////////////////
 
                         /* Joe's code addition to render current movie stats to video render screen */
-                        var queryURLS = "http://www.omdbapi.com/?t=" + movieMpaa[movieMpaaCounter];
+                        var queryURLS = "https://www.omdbapi.com/?t=" + movieMpaa[movieMpaaCounter];
 
                         $.ajax({
                             url: queryURLS,
