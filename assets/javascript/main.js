@@ -44,6 +44,17 @@ $(document).ready(function() {
             // holds the videoId to display youtube video
             var videoIdMpaa;
 
+            var config = {
+            apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
+            authDomain: "reel-films.firebaseapp.com",
+            databaseURL: "https://reel-films.firebaseio.com",
+            projectId: "reel-films",
+            storageBucket: "reel-films.appspot.com",
+            messagingSenderId: "226828627848"
+                                };
+
+            firebase.initializeApp(config);
+
             // code for the youtube player
             var tag = document.createElement('script');
             var firstScriptTag = document.getElementsByTagName('script')[0];
@@ -138,8 +149,8 @@ $(document).ready(function() {
 
                 var questionTwoButtonDiv = $('<div>').addClass('question-two-button-div');
                 var questionTwoText = $('<p>').addClass('question-two-html').text("Would you like a mainstream movie or indie movie?") /*.css('display',block)*/ ;
-                var questionTwoButtonIndie = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Indie Movie").attr("value", "199999");
-                var questionTwoButtonMainstream = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Mainstream Movie").attr("value", "200001");
+                var questionTwoButtonIndie = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Sleeper Hits").attr("value", "199999");
+                var questionTwoButtonMainstream = $('<button>').addClass('question-two-button question-buttons btn btn-default btn-block').text("Blockbusters").attr("value", "200001");
 
                 questionTwoButtonDiv.append(questionTwoButtonIndie);
                 questionTwoButtonDiv.append(questionTwoButtonMainstream);
@@ -352,7 +363,6 @@ $(document).ready(function() {
 
 
                     $(document).on("click", ".start", function() {
-                        var id;
                                 // Only if at least one rating option has been selected
                                 if (userProfile.length >= 7) {
                                     console.log("start was clicked");
@@ -363,52 +373,37 @@ $(document).ready(function() {
 
                                     videoRender();
                                 }
-                                var config = {
-                                    apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
-                                    authDomain: "reel-films.firebaseapp.com",
-                                    databaseURL: "https://reel-films.firebaseio.com",
-                                    projectId: "reel-films",
-                                    storageBucket: "reel-films.appspot.com",
-                                    messagingSenderId: "226828627848"
-                                };
+                                    var database = firebase.database();
 
-
-                                firebase.initializeApp(config);
-
-                                var database = firebase.database();
-
-                                database.ref().push({
-                                    Genre: userProfile[0],
-                                    Popularity: userProfile[1],
-                                    StartYear: userProfile[2],
-                                    EndYear: userProfile[3],
-                                    ReviewStart: userProfile[4],
-                                    ReviewEnd: userProfile[5],
-                                    Rating1: userProfile[6],
-                                    Rating2: userProfile[7] || "",
-                                    Rating3: userProfile[8] || "",
-                                    Rating4: userProfile[9] || "",
-                              
-
+                                    var pushed = database.ref().push({
+                                        PlaylistArray: movieMpaa
                                     }); // end of the database push 
-                                id = pushed.name() // gives us the key value
+                                    console.log(pushed);
+                                    id = pushed.key;
+                                    console.log(id);
+                                 // gives us the key value
+                                    database.ref().on("child_added", function(snapshot) {
+
+                                    // Change the HTML to reflect
+                                    console.log(snapshot.val());
+        
+                                     }); // end of snapshot
                                 }); // end of the start function
                             } //end of the counter if statement
 
                             
                             // CREATE NEW PLAYLIST DIV (THIS CREATES )
-
+                            
                             var createNewPlaylistDiv = $('<div>').addClass('create-new-playlist-div');
                             var addNewDiv = $('<div>').addClass('new-playlist-div');
                             var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
                             
-                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id', id).text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
+                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id',"id").text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
 
                             addNewDiv.append(genreText); 
                             createNewPlaylistDiv.append(genreText); 
                             createNewPlaylistDiv.append(addNewDiv); 
                             $('#playlist-div').append(createNewPlaylistDiv);
-                            
 
 
 
@@ -424,7 +419,7 @@ $(document).ready(function() {
                     function findTitle() {
                         // console.log("START OF MOVIE TITLE");
                         // produce Titles 
-                        if (counterP < 25) {
+                        if (counterP < 18) {
                             queryURL = "https://api.themoviedb.org/3/discover/movie?api_key=a4a27185a8d4d5eda2d9b10434e6cad8&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&with_genres=" + userProfile[0] + "&page=" + counterP;
                             $.ajax({
                                 url: queryURL,
@@ -572,7 +567,7 @@ $(document).ready(function() {
 
                     // pushes indie films
                     function add(numImbdVotes) {
-                        if (numImbdVotes > 50000 && numImbdVotes < 100000) {
+                        if (numImbdVotes < 125000) {
                             movieMainInd.push(movieTitleGen[counterT]);
                             // console.log(movieMainInd);
                         }
@@ -591,6 +586,7 @@ $(document).ready(function() {
                         $('#render-div').hide(1000);
                         $('#render-div').empty(1000);
                         $('#render-div').show(1000);
+                        $('.space').css("background-color", "gray");
                         $('.placeholderSidebarLeft').css("display", "inline-block");
                         $('.placeholderSidebarRight').css("display", "inline-block");
 
@@ -601,7 +597,7 @@ $(document).ready(function() {
                             var createDiv = $('<button>').addClass('createButton btn btn-default btn-block').text('Create New Playlist').css('display', "block");
                             $('#playlist-div').prepend($('<hr>'));
                             $('#playlist-div').prepend(createDiv);
-
+                            counter++;
                         }
 
                         var movieInfoContainer = $('<div>').addClass('movie-info-container').text('MOVIE INFO');
@@ -627,12 +623,12 @@ $(document).ready(function() {
                             var runTime = response.Runtime;
                             var releaseYear = response.Released;
                             var movieAssociationRating = response.Rated;
-                  			if(response.Ratings[0]){
-                  			var sourceVal1 = response.Ratings[0].Source;
+                            if(response.Ratings[0]){
+                            var sourceVal1 = response.Ratings[0].Source;
                             var tomatoRating = response.Ratings[0].Value;
-                           	}
+                            }
                             if(response.Ratings[1]){
-                            var sourceVal2 = response.Ratings[1].Source;	
+                            var sourceVal2 = response.Ratings[1].Source;    
                             var metaRating = response.Ratings[1].Value;
                             };
                             var poster = response.Poster;
@@ -739,6 +735,7 @@ $(document).ready(function() {
 
                     // This butoon creates a new playlist if the user clicks on the create new playlist button OR is new to the site
                     function createNewPlaylist() {
+
                         // Arrays of movie filtered titles
                         userProfile = [];
                         movieTitleGen = [];
@@ -758,7 +755,7 @@ $(document).ready(function() {
                         movieYearL = 0;
                         movieImbdRatL = 0;
                         console.log("test")
-
+                        $('.space').css("background-color", "#F4EADE");
                         $('#render-div').hide();
                         $('#render-div').empty();
                         $('.placeholderSidebarLeft').hide();
@@ -800,7 +797,7 @@ $(document).ready(function() {
                         $('#render-div').append(questionOneDiv);
 
 
-                        if (counter === 0) {
+                        /////////////////if (counter === 0) {
 
                             $(document).on("click", ".genre-buttons-question-one", function() {
                                 playlistName = $(this).text();
@@ -812,7 +809,7 @@ $(document).ready(function() {
 
 
                             });
-                        } //If Statement with counter
+                        ////////////////////////////////////} //If Statement with counter
                         counter = 1;
                     } // End Create Playlist Function
 
