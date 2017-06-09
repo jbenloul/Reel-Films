@@ -44,6 +44,10 @@ $(document).ready(function() {
             // holds the videoId to display youtube video
             var videoIdMpaa;
 
+            var id;
+
+            var genreText;
+
             var config = {
             apiKey: "AIzaSyBZpHDBvw3YUY4coBuentM9OIJPf6GqWs4",
             authDomain: "reel-films.firebaseapp.com",
@@ -382,12 +386,12 @@ $(document).ready(function() {
                                     id = pushed.key;
                                     console.log(id);
                                  // gives us the key value
-                                    database.ref().on("child_added", function(snapshot) {
+                                    // database.ref().on("child_added", function(snapshot) {
 
-                                    // Change the HTML to reflect
-                                    console.log(snapshot.val());
+                                    // // Change the HTML to reflect
+                                    // console.log(snapshot.val());
         
-                                     }); // end of snapshot
+                                    //  }); // end of snapshot
                                 }); // end of the start function
                             } //end of the counter if statement
 
@@ -398,7 +402,7 @@ $(document).ready(function() {
                             var addNewDiv = $('<div>').addClass('new-playlist-div');
                             var genreNumToString = userProfile[0]; console.log("This console.log should show the genre selected as a string: " + genreChoicesArray[genreNumToString]);
                             
-                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr('data-id',"id").text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
+                            var genreText = $('<button>').addClass('genre-text btn btn-warning btn-block').attr("data-id",id).text("Playlist: " + playlistName /*genreChoicesArray[genreNumToString]*/ ).css('display', "block");
 
                             addNewDiv.append(genreText); 
                             createNewPlaylistDiv.append(genreText); 
@@ -813,12 +817,44 @@ $(document).ready(function() {
                         counter = 1;
                     } // End Create Playlist Function
 
+                    function grabPlaylist(){
+                    var database = firebase.database();
+                    // id = $(this).attr("data-id");
+                    database.ref().on("value", gotData, errData) ;
+                    id = $(this).attr("data-id");
+                    console.log(id);
 
+                        function gotData(data){
+                            // console.log(data.val());
+                            var scores = data.val();
+                            // console.log(scores);
+                            var keys = Object.keys(data.val());
+                            console.log(keys);
+                            for(var i = 0; i < keys.length; i++){
+                                if(keys[i].indexOf(id) !== -1){
+                                    console.log(keys[i].indexOf(id));
+                                    var k = keys[i];
+                                    movieMpaa = scores[k].PlaylistArray;
+                                    console.log(movieMpaa);
+                                    movieMpaaCounter = 0;
+                                    videoRender();
+                                }
+                            }
+
+
+                    }
+                    function errData(err){
+                        console.log("Error");
+                        console.log(err);
+                    }
+                    
+                        };
+                    
 
 
                     // This line will look for any playlists added and will change the playlist when clicked
                     $(document).on("click", ".createButton", createNewPlaylist);
                     $(document).on("click",".left-arrow",previousVideo);
                     $(document).on("click",".right-arrow",nextVideo);
-
+                    $(document).on("click",".genre-text",grabPlaylist);
                 });
